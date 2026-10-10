@@ -15,10 +15,10 @@
   <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css"
     integrity="sha384-cg6SkqEOCV1NbJoCu11+bm0NvBRc8IYLRGXkmNrqUBfTjmMYwNKPWBTIKyw9mHNJ" crossorigin="anonymous">
 
-  <!-- Google fonts: Fraunces (display, an organic "field guide" serif) + Source Sans 3 (text) -->
+  <!-- Google fonts: Jost (display, geometric sans) + Bitter (text, soft slab serif) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..700&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&family=Bitter:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
 
   <style>
     /* ---------- Design tokens ---------- */
@@ -31,8 +31,8 @@
       --accent: #8A3B24;   /* rust: eyebrows, top rule, emphasis */
       --rule:   #DEDACB;   /* hairline dividers */
 
-      --font-display: 'Fraunces', Georgia, 'Times New Roman', serif;
-      --font-text: 'Source Sans 3', 'Segoe UI', Helvetica, Arial, sans-serif;
+      --font-display: 'Jost', 'Futura', 'Century Gothic', Helvetica, Arial, sans-serif;
+      --font-text: 'Bitter', Georgia, 'Times New Roman', serif;
 
       --gap-section: 64px; /* between sections */
       --gap-head: 40px;    /* section heading -> first figure */
@@ -71,7 +71,7 @@
     /* ---------- Type scale ---------- */
     h1, h2 {
       font-family: var(--font-display);
-      font-weight: 600;
+      font-weight: 700;
       color: var(--ink);
       text-align: center;
       text-wrap: balance;
@@ -97,6 +97,7 @@
     }
     .eyebrow {
       display: block;
+      font-family: var(--font-display);
       margin: 0 0 16px;
       font-size: 13px;
       font-weight: 600;
@@ -240,7 +241,7 @@
       <div class="pure-u-1-1">
         <span class="eyebrow">Western Australia &middot; January&ndash;December 2025</span>
         <h1>Twelve months of birds in Western Australia</h1>
-        <p class="lede">Nearly 38,500 sightings, submitted by birdwatchers across Western Australia, tell a story of who's common, who's rare, and how activity shifts with the seasons.</p>
+        <p class="lede">Sightings logged by birdwatchers across Western Australia from January to December 2025 tell a story of who&rsquo;s common, who&rsquo;s rare, and how activity shifts with the seasons.</p>
       </div>
     </div>
 
@@ -258,7 +259,7 @@
       <div class="pure-g">
         <div class="pure-u-1-1">
           <div id="chartDonut" class="vis-container"></div>
-          <p class="caption">Share of sightings by taxonomic order.</p>
+          <p class="caption">Parrots make up almost half of the sightings in this chart, led by the Red-capped Parrot, with songbirds such as the Splendid Fairywren close to a third. The bee-eater&rsquo;s order adds about 18% and the Tawny Frogmouth&rsquo;s order just 3%. These are the six species featured in section 05, logged between January and December 2025.</p>
         </div>
       </div>
     </div>
@@ -277,19 +278,19 @@
       <div class="pure-g">
         <div class="pure-u-1-1">
           <div id="mapA" class="vis-container"></div>
-          <p class="caption">Total individual count per cell.</p>
+          <p class="caption">About 85% of the points fall in the south-west corner, and more than half sit within 100 km of Perth. North of 23&deg;S, across much of the state&rsquo;s tropical north, there are only about 6%. The map shows where people watch birds as much as where birds live, so the empty areas are mostly unwatched rather than birdless.</p>
         </div>
       </div>
       <div class="pure-g">
         <div class="pure-u-1-1">
           <div id="chartHabitat" class="vis-container"></div>
-          <p class="caption">Shore and backyard surveys make up the vast majority of records.</p>
+          <p class="caption">Shore and backyard surveys account for about 98% of records, split almost evenly at 52% and 46%. Shore surveys also turn up the most species, 296 against 206 in backyards. Wetlands add only 1% of records, though they still yield 122 species.</p>
         </div>
       </div>
       <div class="pure-g">
         <div class="pure-u-1-1">
           <div id="chartCalendar" class="vis-container"></div>
-          <p class="caption">Each square is one day of 2025 (darker means more records); the bars give the average for each weekday. Records peak in October&ndash;November and dip in August, and Sundays are busiest (11.5 a day, against 7.0 on Tuesdays). Based on the 3,414 records in this extract.</p>
+          <p class="caption">Records climb through spring, with October and November alone holding a quarter of the year&rsquo;s total, while August is the quietest month. Sundays are the busiest day, about 60% ahead of Tuesdays, which fits weekend birdwatching. Each square is one day of 2025 for the six species featured in section 05.</p>
         </div>
       </div>
     </div>
@@ -308,7 +309,7 @@
       <div class="pure-g">
         <div class="pure-u-1-1">
           <div id="mapC" class="vis-container"></div>
-          <p class="caption">Species richness by region.</p>
+          <p class="caption">The Wheatbelt records the most species (162), followed by the Kimberley (143) and the Great Southern (133). The Kimberley&rsquo;s place is striking because it is far less watched than the south, which points to genuine tropical variety rather than effort. The Pilbara (41) and the Gascoyne (80) sit at the bottom, where thin coverage probably understates them.</p>
         </div>
       </div>
     </div>
@@ -327,25 +328,25 @@
       <div class="pure-g">
         <div class="pure-u-1-1">
           <div id="mapB" class="vis-container"></div>
-          <p class="caption">Season with the most sightings per ~8km cell.</p>
+          <p class="caption">In the south-west, spring is the busiest season in the largest share of areas, with summer leading around Albany and the south coast. North of about 23&deg;S, almost every area peaks in winter, the dry season. The state effectively runs on two calendars: a spring surge in the south and a winter peak in the tropics.</p>
         </div>
       </div>
       <div class="pure-g">
         <div class="pure-u-1-1">
           <div id="chartTreemap" class="vis-container"></div>
-          <p class="caption">Tile size shows the count recorded for each season and bird order. Use the controls to change the layout.</p>
+          <p class="caption">Spring is the busiest season, holding about 30% of the year&rsquo;s sightings against 22% in summer. Songbirds lead in every season, from 52% of summer sightings to 62% of spring&rsquo;s. Parrots are a distant second in all four, between 10% and 12%.</p>
         </div>
       </div>
       <div class="pure-g">
         <div class="pure-u-1-1">
           <div id="chartBump" class="vis-container"></div>
-          <p class="caption">Rank of each of the ten most-recorded orders within each season. Kingfishers sit 10th in autumn and winter, then climb to 7th in spring; hawks and eagles reach 6th in winter before dropping back to 10th.</p>
+          <p class="caption">Songbirds, parrots, waterfowl, pelicans and herons, and pigeons and doves hold the top five places in the same order all year. The movement is at the bottom, where kingfishers sit 10th in autumn and winter before climbing to 7th in spring. Hawks and eagles peak in winter, rising to 6th, then drop back to 10th in spring.</p>
         </div>
       </div>
       <div class="pure-g">
         <div class="pure-u-1-1">
           <div id="chartRidge" class="vis-container"></div>
-          <p class="caption">Daily sighting volume by species.</p>
+          <p class="caption">Four of the six species peak in October and the Tawny Frogmouth follows in November, so spring is the high point for almost all of them. The Rainbow Bee-eater is the most extreme, almost absent in April and May before surging in October. The Western Rosella is the exception, peaking in March.</p>
         </div>
       </div>
     </div>
@@ -394,7 +395,7 @@
       <div class="pure-g">
         <div class="pure-u-1-1">
           <div id="speciesDistribution" class="vis-container"></div>
-          <p class="caption">Where each of the six species was recorded.</p>
+          <p class="caption">The Western Rosella and Red-capped Parrot are confined to the south-west corner, with none of their records north of 30&deg;S. The Regent Parrot is nearly as restricted, and the Splendid Fairywren stays almost entirely in the south. The Rainbow Bee-eater ranges furthest, with nearly a third of its records north of 30&deg;S and some reaching the Kimberley.</p>
         </div>
       </div>
     </div>
@@ -414,7 +415,7 @@
       <div class="pure-g">
         <div class="pure-u-1-1">
           <div id="chartParcoord" class="vis-container"></div>
-          <p class="caption">Raw counts and reporting rates, 2015 vs. 2025, for the 18 most-recorded species.</p>
+          <p class="caption">Eleven of the 18 species rose, led by the Western Gerygone, up 143% and climbing from 18th to 8th place. The Australian Raven moved to first place (+42%), displacing the Willie Wagtail, which fell to 5th after a 21% drop. The biggest loss was the Magpie-lark, down 51% and from 4th to 17th.</p>
         </div>
       </div>
     </div>
@@ -430,8 +431,8 @@
   </div> <!-- end page -->
 
   <script type="text/javascript">
-    // One typeface for every chart. The inner quotes matter: "Source Sans 3" ends in a numeral.
-    const CHART_FONT = "'Source Sans 3', sans-serif";
+    // One typeface for every chart (Jost, the same as the headings).
+    const CHART_FONT = "'Jost', sans-serif";
 
     const baseConfig = {
       background: null,
@@ -499,7 +500,7 @@
     // Charts draw text onto a canvas, so the web fonts must be ready first (with a timeout as a fallback)
     function whenFontsReady(){
       if (!document.fonts || !document.fonts.load) return Promise.resolve();
-      const loads = ["400 16px 'Source Sans 3'", "600 16px 'Source Sans 3'", "600 16px 'Fraunces'"]
+      const loads = ["400 16px 'Jost'", "600 16px 'Jost'", "700 16px 'Jost'", "400 16px 'Bitter'"]
         .map(f => document.fonts.load(f).catch(() => {}));
       const timeout = new Promise(resolve => setTimeout(resolve, 2500));
       return Promise.race([Promise.all(loads), timeout]);
