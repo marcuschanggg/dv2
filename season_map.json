@@ -1,0 +1,204 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Which season dominates each area",
+  "width": 820,
+  "height": 500,
+  "projection": {
+    "type": "mercator"
+  },
+  "layer": [
+    {
+      "data": {
+        "url": "wa_topo.json",
+        "format": {
+          "type": "topojson",
+          "feature": "wa"
+        }
+      },
+      "mark": {
+        "type": "geoshape",
+        "fill": "#EBE6D4",
+        "stroke": "#8A3B24",
+        "strokeWidth": 0.8
+      }
+    },
+    {
+      "data": {
+        "url": "season_map.csv",
+        "format": {
+          "type": "csv",
+          "parse": {
+            "lat": "number",
+            "lon": "number",
+            "n": "number"
+          }
+        }
+      },
+      "mark": {
+        "type": "circle",
+        "size": 22,
+        "opacity": 0.75
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "color": {
+          "field": "season",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Summer",
+              "Autumn",
+              "Winter",
+              "Spring"
+            ],
+            "range": [
+              "#C1440E",
+              "#B8862E",
+              "#2E6E72",
+              "#5B8C3A"
+            ]
+          },
+          "legend": {
+            "title": "Dominant season",
+            "orient": "bottom",
+            "direction": "horizontal"
+          }
+        },
+        "tooltip": [
+          {
+            "field": "season",
+            "title": "Dominant season"
+          },
+          {
+            "field": "n",
+            "title": "Sightings"
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "lat": -19.5,
+            "lon": 122.0,
+            "t": [
+              "North of 23\u00b0S, 74 of 77 areas",
+              "peak in winter (the dry season)"
+            ]
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "baseline": "middle",
+        "dx": -14,
+        "dy": 0,
+        "fontSize": 12,
+        "fontWeight": 600,
+        "color": "#2E6E72",
+        "lineHeight": 15
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "t",
+          "type": "nominal"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "lat": -31.6,
+            "lon": 114.6,
+            "t": [
+              "Perth and the Darling Range:",
+              "spring is busiest"
+            ]
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "baseline": "middle",
+        "dx": -6,
+        "dy": -4,
+        "fontSize": 12,
+        "fontWeight": 600,
+        "color": "#5B8C3A",
+        "lineHeight": 15
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "t",
+          "type": "nominal"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "lat": -35.3,
+            "lon": 116.4,
+            "t": [
+              "Albany coast:",
+              "busiest in summer"
+            ]
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "baseline": "middle",
+        "dx": -6,
+        "dy": 6,
+        "fontSize": 12,
+        "fontWeight": 600,
+        "color": "#C1440E",
+        "lineHeight": 15
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "t",
+          "type": "nominal"
+        }
+      }
+    }
+  ]
+}

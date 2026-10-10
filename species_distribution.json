@@ -1,0 +1,46 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Where six WA species were recorded (2025)",
+  "data": {
+    "url": "species_distribution_data.csv"
+  },
+  "facet": {
+    "field": "species",
+    "type": "nominal",
+    "title": null,
+    "sort": ["Western Rosella", "Red-capped Parrot", "Splendid Fairywren", "Rainbow Bee-eater", "Tawny Frogmouth", "Regent Parrot"],
+    "header": {"labelFontSize": 12, "labelFontWeight": "bold", "labelPadding": 4}
+  },
+  "columns": 3,
+  "spec": {
+    "width": 230,
+    "height": 165,
+    "projection": {"type": "mercator"},
+    "layer": [
+      {
+        "data": {
+          "url": "wa_topo.json",
+          "format": {"type": "topojson", "feature": "wa"}
+        },
+        "mark": {"type": "geoshape", "fill": "#EBE6D4", "stroke": "#8A3B24", "strokeWidth": 0.5}
+      },
+      {
+        "mark": {"type": "circle", "size": 18, "opacity": 0.75},
+        "encoding": {
+          "longitude": {"field": "lon", "type": "quantitative"},
+          "latitude": {"field": "lat", "type": "quantitative"},
+          "color": {
+            "field": "species",
+            "type": "nominal",
+            "scale": {"scheme": "dark2"},
+            "legend": null
+          }
+        }
+      }
+    ]
+  },
+  "resolve": {"scale": {"x": "shared", "y": "shared"}},
+  "config": {
+    "view": {"stroke": null}
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Species Richness Across Regions",
+  "width": 700,
+  "height": 500,
+  "projection": {
+    "type": "mercator"
+  },
+  "data": {
+    "url": "Regional_Development_Commissions_Regions_DPIRD_020_WA_GDA2020_Public.json",
+    "format": {
+      "type": "topojson",
+      "feature": "Regional_Development_Commissions_Regions_DPIRD_020_WA_GDA2020_Public"
+    }
+  },
+  "transform": [
+    {
+      "lookup": "properties.region",
+      "from": {
+        "data": {"url": "region_richness_data.csv"},
+        "key": "region",
+        "fields": ["richness", "n_records"]
+      }
+    }
+  ],
+  "mark": {
+    "type": "geoshape",
+    "stroke": "#FBFAF5",
+    "strokeWidth": 1
+  },
+  "encoding": {
+    "color": {
+      "field": "richness",
+      "type": "quantitative",
+      "scale": {"scheme": "yellowgreenblue"},
+      "legend": {"title": "Number of Species"}
+    },
+    "tooltip": [
+      {"field": "properties.region", "title": "Region"},
+      {"field": "richness", "title": "Distinct species"},
+      {"field": "n_records", "title": "Sightings"}
+    ]
+  },
+  "config": {
+    "view": {"stroke": null}
+  }
+}

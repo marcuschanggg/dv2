@@ -1,0 +1,397 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Records per day across 2025, and the average for each weekday"
+  },
+  "data": {
+    "url": "chart_calendar_heatmap_data.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "count": "number",
+        "week": "number",
+        "month": "number"
+      }
+    }
+  },
+  "transform": [
+    {
+      "calculate": "datum.count == 0 ? '0' : datum.count <= 5 ? '1–5' : datum.count <= 10 ? '6–10' : datum.count <= 20 ? '11–20' : '21+'",
+      "as": "bucket"
+    }
+  ],
+  "spacing": 16,
+  "hconcat": [
+    {
+      "width": 650,
+      "height": 86,
+      "layer": [
+        {
+          "params": [
+            {
+              "name": "hover",
+              "select": {
+                "type": "point",
+                "on": "mouseover",
+                "clear": "mouseout",
+                "fields": [
+                  "date"
+                ]
+              }
+            }
+          ],
+          "mark": {
+            "type": "rect",
+            "cornerRadius": 2
+          },
+          "encoding": {
+            "x": {
+              "field": "week",
+              "type": "ordinal",
+              "scale": {
+                "paddingInner": 0.16,
+                "paddingOuter": 0
+              },
+              "axis": {
+                "orient": "top",
+                "title": null,
+                "ticks": false,
+                "domain": false,
+                "labelFontSize": 11,
+                "labelPadding": 6,
+                "labelColor": "#5D6058",
+                "values": [
+                  0,
+                  4,
+                  8,
+                  13,
+                  17,
+                  21,
+                  26,
+                  30,
+                  35,
+                  39,
+                  43,
+                  48
+                ],
+                "labelExpr": "{'0':'Jan','4':'Feb','8':'Mar','13':'Apr','17':'May','21':'Jun','26':'Jul','30':'Aug','35':'Sep','39':'Oct','43':'Nov','48':'Dec'}[datum.value]"
+              }
+            },
+            "y": {
+              "field": "weekday",
+              "type": "ordinal",
+              "sort": [
+                "Mon",
+                "Tue",
+                "Wed",
+                "Thu",
+                "Fri",
+                "Sat",
+                "Sun"
+              ],
+              "scale": {
+                "paddingInner": 0.16,
+                "paddingOuter": 0
+              },
+              "axis": {
+                "title": null,
+                "ticks": false,
+                "domain": false,
+                "values": [
+                  "Mon",
+                  "Wed",
+                  "Fri",
+                  "Sun"
+                ],
+                "labelFontSize": 11,
+                "labelPadding": 6,
+                "labelColor": "#5D6058"
+              }
+            },
+            "color": {
+              "field": "bucket",
+              "type": "ordinal",
+              "scale": {
+                "domain": [
+                  "0",
+                  "1–5",
+                  "6–10",
+                  "11–20",
+                  "21+"
+                ],
+                "range": [
+                  "#F7EEEB",
+                  "#F3CEC3",
+                  "#E8A591",
+                  "#CC6E53",
+                  "#8A3B24"
+                ]
+              },
+              "legend": {
+                "orient": "bottom",
+                "direction": "horizontal",
+                "title": "Records per day",
+                "titleOrient": "left",
+                "titleFontSize": 12,
+                "titleFontWeight": 600,
+                "titleColor": "#383B35",
+                "labelFontSize": 12,
+                "labelColor": "#5D6058",
+                "symbolType": "square",
+                "symbolSize": 150,
+                "columnPadding": 14,
+                "offset": 40
+              }
+            },
+            "stroke": {
+              "condition": {
+                "param": "hover",
+                "empty": false,
+                "value": "#232622"
+              },
+              "value": null
+            },
+            "strokeWidth": {
+              "condition": {
+                "param": "hover",
+                "empty": false,
+                "value": 1.5
+              },
+              "value": 0
+            },
+            "tooltip": [
+              {
+                "field": "label",
+                "type": "nominal",
+                "title": "Date"
+              },
+              {
+                "field": "count",
+                "type": "quantitative",
+                "title": "Records"
+              }
+            ]
+          }
+        },
+        {
+          "data": {
+            "values": [
+              {
+                "a": 0
+              }
+            ]
+          },
+          "mark": {
+            "type": "rule",
+            "strokeWidth": 2,
+            "strokeCap": "round",
+            "color": "#8A3B24"
+          },
+          "encoding": {
+            "x": {
+              "value": 479.7501892505677
+            },
+            "x2": {
+              "value": 588.4935654806964
+            },
+            "y": {
+              "value": 94
+            }
+          }
+        },
+        {
+          "data": {
+            "values": [
+              {
+                "a": 0
+              }
+            ]
+          },
+          "mark": {
+            "type": "text",
+            "text": "Oct–Nov: 25% of all records",
+            "align": "center",
+            "baseline": "top",
+            "fontSize": 12,
+            "color": "#383B35"
+          },
+          "encoding": {
+            "x": {
+              "value": 534.121877365632
+            },
+            "y": {
+              "value": 102
+            }
+          }
+        },
+        {
+          "data": {
+            "values": [
+              {
+                "a": 0
+              }
+            ]
+          },
+          "mark": {
+            "type": "rule",
+            "strokeWidth": 2,
+            "strokeCap": "round",
+            "color": "#9B9686"
+          },
+          "encoding": {
+            "x": {
+              "value": 369.0386071158213
+            },
+            "x2": {
+              "value": 428.5768357305071
+            },
+            "y": {
+              "value": 94
+            }
+          }
+        },
+        {
+          "data": {
+            "values": [
+              {
+                "a": 0
+              }
+            ]
+          },
+          "mark": {
+            "type": "text",
+            "text": "Aug: quietest month (173)",
+            "align": "right",
+            "baseline": "top",
+            "fontSize": 12,
+            "color": "#383B35"
+          },
+          "encoding": {
+            "x": {
+              "value": 428.5768357305071
+            },
+            "y": {
+              "value": 102
+            }
+          }
+        }
+      ]
+    },
+    {
+      "width": 100,
+      "height": 86,
+      "transform": [
+        {
+          "aggregate": [
+            {
+              "op": "mean",
+              "field": "count",
+              "as": "avg"
+            }
+          ],
+          "groupby": [
+            "weekday"
+          ]
+        }
+      ],
+      "encoding": {
+        "y": {
+          "field": "weekday",
+          "type": "ordinal",
+          "sort": [
+            "Mon",
+            "Tue",
+            "Wed",
+            "Thu",
+            "Fri",
+            "Sat",
+            "Sun"
+          ],
+          "scale": {
+            "paddingInner": 0.16,
+            "paddingOuter": 0
+          },
+          "axis": null
+        }
+      },
+      "layer": [
+        {
+          "mark": {
+            "type": "bar",
+            "cornerRadiusTopRight": 4,
+            "cornerRadiusBottomRight": 4
+          },
+          "encoding": {
+            "x": {
+              "field": "avg",
+              "type": "quantitative",
+              "scale": {
+                "domain": [
+                  0,
+                  18
+                ]
+              },
+              "axis": {
+                "orient": "top",
+                "title": null,
+                "ticks": false,
+                "domain": false,
+                "labelFontSize": 11,
+                "labelPadding": 6,
+                "labelColor": "#5D6058",
+                "values": [
+                  0,
+                  5,
+                  10,
+                  15
+                ],
+                "grid": false
+              }
+            },
+            "color": {
+              "condition": {
+                "test": "datum.weekday === 'Sun'",
+                "value": "#8A3B24"
+              },
+              "value": "#D9D4C6"
+            },
+            "tooltip": [
+              {
+                "field": "weekday",
+                "type": "nominal",
+                "title": "Day"
+              },
+              {
+                "field": "avg",
+                "type": "quantitative",
+                "format": ".1f",
+                "title": "Average records per day"
+              }
+            ]
+          }
+        },
+        {
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "baseline": "middle",
+            "dx": 5,
+            "fontSize": 11,
+            "color": "#383B35"
+          },
+          "encoding": {
+            "x": {
+              "field": "avg",
+              "type": "quantitative"
+            },
+            "text": {
+              "field": "avg",
+              "type": "quantitative",
+              "format": ".1f"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

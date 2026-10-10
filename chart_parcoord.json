@@ -1,0 +1,337 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Bird populations in WA: 2015 vs. 2025 (top 18 species)",
+    "subtitle": "Magpie-lark fell from 4th to 17th: its count halved (\u221251%)",
+    "subtitleColor": "#8A3B24",
+    "subtitleFontSize": 13,
+    "subtitleFontWeight": 600,
+    "subtitlePadding": 6
+  },
+  "width": 300,
+  "height": 600,
+  "padding": {
+    "left": 130,
+    "right": 130
+  },
+  "data": {
+    "url": "chart_parcoord_data.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "axis_order": "number",
+        "value": "number"
+      }
+    }
+  },
+  "transform": [
+    {
+      "filter": "datum.axis_order == 0 || datum.axis_order == 1"
+    },
+    {
+      "calculate": "datum.axis_order == 0 ? datum.raw_count_2015 : datum.raw_count_2025",
+      "as": "population"
+    },
+    {
+      "window": [
+        {
+          "op": "row_number",
+          "as": "rank"
+        }
+      ],
+      "sort": [
+        {
+          "field": "population",
+          "order": "descending"
+        }
+      ],
+      "groupby": [
+        "axis_order"
+      ]
+    }
+  ],
+  "layer": [
+    {
+      "mark": {
+        "type": "line",
+        "opacity": 0.35,
+        "strokeWidth": 4.5,
+        "interpolate": "monotone"
+      },
+      "encoding": {
+        "x": {
+          "field": "axis_order",
+          "type": "ordinal",
+          "title": null,
+          "sort": "ascending",
+          "axis": {
+            "labelExpr": "['2015', '2025'][datum.value]",
+            "labelAngle": 0,
+            "labelFontSize": 15,
+            "labelPadding": 15,
+            "domain": false,
+            "ticks": false
+          }
+        },
+        "y": {
+          "field": "rank",
+          "type": "quantitative",
+          "title": null,
+          "axis": null,
+          "scale": {
+            "reverse": true
+          }
+        },
+        "color": {
+          "field": "common",
+          "type": "nominal",
+          "scale": {
+            "scheme": "tableau20"
+          },
+          "legend": null
+        },
+        "detail": {
+          "field": "common"
+        },
+        "tooltip": [
+          {
+            "field": "common",
+            "title": "Species"
+          },
+          {
+            "field": "population",
+            "title": "Population"
+          },
+          {
+            "field": "change_pct",
+            "title": "Count change (%)"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "size": 90,
+        "opacity": 1
+      },
+      "encoding": {
+        "x": {
+          "field": "axis_order",
+          "type": "ordinal",
+          "sort": "ascending"
+        },
+        "y": {
+          "field": "rank",
+          "type": "quantitative"
+        },
+        "color": {
+          "field": "common",
+          "type": "nominal",
+          "legend": null
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.axis_order == 0"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "dx": -10,
+        "fontSize": 12,
+        "fontWeight": "bold"
+      },
+      "encoding": {
+        "x": {
+          "field": "axis_order",
+          "type": "ordinal",
+          "sort": "ascending"
+        },
+        "y": {
+          "field": "rank",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "common",
+          "type": "nominal"
+        },
+        "color": {
+          "condition": {
+            "test": "datum.common == 'Magpie-lark'",
+            "value": "#8A3B24"
+          },
+          "field": "common",
+          "type": "nominal",
+          "legend": null
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.axis_order == 1"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 10,
+        "fontSize": 12,
+        "fontWeight": "bold"
+      },
+      "encoding": {
+        "x": {
+          "field": "axis_order",
+          "type": "ordinal",
+          "sort": "ascending"
+        },
+        "y": {
+          "field": "rank",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "common",
+          "type": "nominal"
+        },
+        "color": {
+          "condition": {
+            "test": "datum.common == 'Magpie-lark'",
+            "value": "#8A3B24"
+          },
+          "field": "common",
+          "type": "nominal",
+          "legend": null
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.axis_order == 0"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "dx": -170,
+        "fontSize": 12,
+        "color": "#555"
+      },
+      "encoding": {
+        "x": {
+          "field": "axis_order",
+          "type": "ordinal",
+          "sort": "ascending"
+        },
+        "y": {
+          "field": "rank",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "population",
+          "type": "quantitative",
+          "format": ","
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.axis_order == 1"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 170,
+        "fontSize": 12,
+        "color": "#555"
+      },
+      "encoding": {
+        "x": {
+          "field": "axis_order",
+          "type": "ordinal",
+          "sort": "ascending"
+        },
+        "y": {
+          "field": "rank",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "population",
+          "type": "quantitative",
+          "format": ","
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.common == 'Magpie-lark'"
+        }
+      ],
+      "mark": {
+        "type": "line",
+        "strokeWidth": 6,
+        "color": "#8A3B24",
+        "opacity": 1,
+        "interpolate": "monotone"
+      },
+      "encoding": {
+        "x": {
+          "field": "axis_order",
+          "type": "ordinal",
+          "sort": "ascending"
+        },
+        "y": {
+          "field": "rank",
+          "type": "quantitative",
+          "scale": {
+            "reverse": true
+          }
+        },
+        "detail": {
+          "field": "common"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.common == 'Magpie-lark'"
+        }
+      ],
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "size": 130,
+        "color": "#8A3B24",
+        "opacity": 1
+      },
+      "encoding": {
+        "x": {
+          "field": "axis_order",
+          "type": "ordinal",
+          "sort": "ascending"
+        },
+        "y": {
+          "field": "rank",
+          "type": "quantitative"
+        }
+      }
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "axis": {
+      "grid": false
+    }
+  }
+}

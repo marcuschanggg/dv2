@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Birds of Western Australia: Twelve Months of Sightings</title>
+
+  <!-- Import Vega & Vega-Lite -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vega/5.30.0/vega.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vega-lite/5.20.1/vega-lite.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vega-embed/6.26.0/vega-embed.min.js"></script>
+
+  <!-- Import pure.css -->
+  <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css"
+    integrity="sha384-cg6SkqEOCV1NbJoCu11+bm0NvBRc8IYLRGXkmNrqUBfTjmMYwNKPWBTIKyw9mHNJ" crossorigin="anonymous">
+
+  <!-- Google fonts: Fraunces (display, an organic "field guide" serif) + Source Sans 3 (text) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..700&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+
+  <style>
+    /* ---------- Design tokens ---------- */
+    :root {
+      --paper:  #EFEDE3;   /* ground behind the page */
+      --card:   #FFFFFF;   /* the page itself */
+      --ink:    #232622;   /* headings */
+      --body:   #383B35;   /* main text */
+      --muted:  #5D6058;   /* captions, footer */
+      --accent: #8A3B24;   /* rust: eyebrows, top rule, emphasis */
+      --rule:   #DEDACB;   /* hairline dividers */
+
+      --font-display: 'Fraunces', Georgia, 'Times New Roman', serif;
+      --font-text: 'Source Sans 3', 'Segoe UI', Helvetica, Arial, sans-serif;
+
+      --gap-section: 64px; /* between sections */
+      --gap-head: 40px;    /* section heading -> first figure */
+      --gap-figure: 48px;  /* between figures */
+    }
+
+    /* ---------- Base ---------- */
+    body {
+      margin: 0;
+      background-color: var(--paper);
+      color: var(--body);
+      font-family: var(--font-text);
+      font-size: 17px;
+      line-height: 1.65;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* pure.css forces a generic sans-serif on every grid cell; restore the page font */
+    .pure-g,
+    .pure-g [class*="pure-u"] {
+      font-family: var(--font-text);
+    }
+
+    .page {
+      width: 100%;
+      max-width: 950px;
+      box-sizing: border-box;
+      margin: 48px auto;
+      padding: 72px 60px 56px;
+      background-color: var(--card);
+      border-top: 6px solid var(--accent);
+      box-shadow: 0 6px 24px rgba(35, 38, 34, 0.08);
+    }
+
+    /* ---------- Type scale ---------- */
+    h1, h2 {
+      font-family: var(--font-display);
+      font-weight: 600;
+      color: var(--ink);
+      text-align: center;
+      text-wrap: balance;
+    }
+    h1 {
+      max-width: 14em;
+      margin: 0 auto 24px;
+      font-size: clamp(2.25rem, 5.4vw, 3.5rem);
+      line-height: 1.08;
+      letter-spacing: -0.015em;
+    }
+    h2 {
+      margin: 0 0 16px;
+      font-size: 2rem;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+    }
+    p {
+      margin: 0 0 1em;
+      color: var(--body);
+      font-size: 1rem;
+      line-height: 1.65;
+    }
+    .eyebrow {
+      display: block;
+      margin: 0 0 16px;
+      font-size: 13px;
+      font-weight: 600;
+      line-height: 1.2;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent);
+      text-align: center;
+    }
+
+    /* ---------- Hero ---------- */
+    .hero {
+      padding-bottom: 56px;
+      margin-bottom: var(--gap-section);
+      border-bottom: 1px solid var(--rule);
+      text-align: center;
+    }
+    .lede {
+      max-width: 34em;
+      margin: 0 auto;
+      font-size: 1.25rem;
+      line-height: 1.55;
+      text-wrap: balance;
+    }
+
+    /* ---------- Sections ---------- */
+    .section-container {
+      margin-bottom: var(--gap-section);
+      padding-bottom: var(--gap-section);
+      border-bottom: 1px solid var(--rule);
+    }
+    .description {
+      margin: 0 auto var(--gap-head);
+      text-align: center;
+    }
+    .description p {
+      max-width: 32em;           /* about 70 characters per line */
+      margin: 0 auto 12px;
+      text-wrap: balance;
+    }
+    .description p:last-child {
+      margin-bottom: 0;
+    }
+    .description .note {
+      font-size: 0.9375rem;
+      color: var(--muted);
+    }
+    .description .note b {
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    /* ---------- Figures ---------- */
+    .vis-container {
+      width: 100%;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      overflow-x: auto;
+      font-family: var(--font-text);
+    }
+    .vis-container .vega-bindings {
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .caption {
+      max-width: 40em;
+      margin: 14px auto var(--gap-figure);
+      font-size: 14px;
+      font-style: italic;
+      line-height: 1.5;
+      color: var(--muted);
+      text-align: center;
+      text-wrap: balance;
+    }
+    .section-container > .pure-g:last-child .caption {
+      margin-bottom: 0;
+    }
+    .load-error {
+      font-size: 14px;
+      color: var(--accent);
+      font-style: italic;
+    }
+
+    /* ---------- Species photos ---------- */
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 20px 16px;
+      margin-bottom: var(--gap-figure);
+    }
+    .photo-card img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      border-radius: 4px;
+      border: 1px solid var(--rule);
+    }
+    .photo-card p {
+      margin: 8px 0 0;
+      font-size: 13px;
+      font-weight: 600;
+      line-height: 1.3;
+      color: var(--body);
+      text-align: center;
+      text-wrap: balance;
+    }
+
+    /* ---------- Footer ---------- */
+    .footer {
+      text-align: center;
+    }
+    .footer p {
+      max-width: 46em;
+      margin: 0 auto 8px;
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--muted);
+    }
+
+    /* ---------- Small screens ---------- */
+    @media (max-width: 700px) {
+      body { font-size: 16px; }
+      .page { margin: 0 auto; padding: 48px 20px 40px; border-top-width: 4px; }
+      .hero { padding-bottom: 40px; margin-bottom: 48px; }
+      .lede { font-size: 1.125rem; }
+      h2 { font-size: 1.6rem; }
+      .section-container { margin-bottom: 48px; padding-bottom: 48px; }
+      .photo-grid { grid-template-columns: repeat(3, 1fr); gap: 16px 12px; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="page">
+
+    <!-- HERO -->
+    <div class="pure-g hero">
+      <div class="pure-u-1-1">
+        <span class="eyebrow">Western Australia &middot; January&ndash;December 2025</span>
+        <h1>Twelve months of birds in Western Australia</h1>
+        <p class="lede">Nearly 38,500 sightings, submitted by birdwatchers across Western Australia, tell a story of who's common, who's rare, and how activity shifts with the seasons.</p>
+      </div>
+    </div>
+
+    <!-- 1. WHAT: the big picture -->
+    <div class="section-container">
+      <div class="pure-g">
+        <div class="pure-u-1-1">
+          <div class="description">
+            <span class="eyebrow">01 &middot; Composition</span>
+            <h2>What was seen</h2>
+            <p>A breakdown of the bird orders recorded over the twelve months, highlighting the most common classifications observed.</p>
+          </div>
+        </div>
+      </div>
+      <div class="pure-g">
+        <div class="pure-u-1-1">
+          <div id="chartDonut" class="vis-container"></div>
+          <p class="caption">Share of sightings by taxonomic order.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. WHERE: effort and volume -->
+    <div class="section-container">
+      <div class="pure-g">
+        <div class="pure-u-1-1">
+          <div class="description">
+            <span class="eyebrow">02 &middot; Effort</span>
+            <h2>Where the birds were counted</h2>
+            <p>Sightings have been pooled into ~15km cells. More points mark wetlands and reserves where large flocks gather. Alongside the map, a look at which kinds of survey produced the records, and a calendar of when they came in.</p>
+          </div>
+        </div>
+      </div>
+      <div class="pure-g">
+        <div class="pure-u-1-1">
+          <div id="mapA" class="vis-container"></div>
+          <p class="caption">Total individual count per cell.</p>
+        </div>
+      </div>
+      <div class="pure-g">
+        <div class="pure-u-1-1">
+          <div id="chartHabitat" class="vis-container"></div>
+          <p class="caption">Shore and backyard surveys make up the vast majority of records.</p>
+        </div>
+      </div>
+      <div class="pure-g">
+        <div class="pure-u-1-1">
+          <div id="chartCalendar" class="vis-container"></div>
+          <p class="caption">Each square is one day of 2025 (darker means more records); the bars give the average for each weekday. Records peak in October&ndash;November and dip in August, and Sundays are busiest (11.5 a day, against 7.0 on Tuesdays). Based on the 3,414 records in this extract.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. WHERE: variety -->
+    <div class="section-container">
+      <div class="pure-g">
+        <div class="pure-u-1-1">
+          <div class="description">
+            <span class="eyebrow">03 &middot; Variety</span>
+            <h2>Where the variety lives</h2>
+            <p>Volume isn't the same as variety. Using real WA Regional Development Commission boundaries, darker blue means more distinct species recorded in that region (Perth metro is excluded).</p>
+          </div>
+        </div>
+      </div>
+      <div class="pure-g">
+        <div class="pure-u-1-1">
+          <div id="mapC" class="vis-container"></div>
+          <p class="caption">Species richness by region.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. WHEN: seasons and daily rhythm -->
+    <div class="section-container">
+      <div class="pure-g">
+        <div class="pure-u-1-1">
+          <div class="description">
+            <span class="eyebrow">04 &middot; Seasons</span>
+            <h2>When the birds show up</h2>
+            <p>Activity follows the calendar. See which season dominates each patch of ground, how each season divides among bird orders (spring is busiest, and songbirds lead in all four), which orders hold their place, and the daily rhythm of individual species.</p>
+          </div>
+        </div>
+      </div>
+      <div class="pure-g">
+        <div class="pure-u-1-1">
+          <div id="mapB" class="vis-container"></div>
+          <p class="caption">Season with the most sightings per ~8km cell.</p>
+        </div>
+      </div>
+      <div class="pure-g">
+        <div class="pure-u-1-1">
+          <div id="chartTreemap" class="vis-container"></div>
+          <p class="caption">Tile size shows the count recorded for each season and bird order. Use the controls to change the layout.</p>
+        </div>
+      </div>
+      <div class="pure-g">
+        <div class="pure-u-1-1">
+          <div id="chartBump" class="vis-container"></div>
+          <p class="caption">Rank of each of the ten most-recorded orders within each season. Kingfishers sit 10th in autumn and winter, then climb to 7th in spring; hawks and eagles reach 6th in winter before dropping back to 10th.</p>
+        </div>
+      </div>
+      <div class="pure-g">
+        <div class="pure-u-1-1">
+          <div id="chartRidge" class="vis-container"></div>
+          <p class="caption">Daily sighting volume by species.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. WHO: zoom in on species -->
+    <div class="section-container">
+      <div class="pure-g">
+        <div class="pure-u-1-1">
+          <div class="description">
+            <span class="eyebrow">05 &middot; Species</span>
+            <h2>Six species to watch</h2>
+            <p>Some WA birds are homebodies; others range widely. The Western Rosella and Red-capped Parrot, both WA endemics, stay tightly confined to the South West, while the Rainbow Bee-eater ranges much further north.</p>
+          </div>
+        </div>
+      </div>
+      <div class="pure-g">
+        <div class="pure-u-1-1">
+          <div class="photo-grid">
+            <div class="photo-card">
+              <img loading="lazy" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/1/16/Western_Rosella_1.jpg/250px-Western_Rosella_1.jpg" alt="Western Rosella">
+              <p>Western Rosella</p>
+            </div>
+            <div class="photo-card">
+              <img loading="lazy" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/4/43/Red-capped_parrot_5.jpg/250px-Red-capped_parrot_5.jpg" alt="Red-capped Parrot">
+              <p>Red-capped Parrot</p>
+            </div>
+            <div class="photo-card">
+              <img loading="lazy" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ea/Splendid_Fairywren_8352.jpg/250px-Splendid_Fairywren_8352.jpg" alt="Splendid Fairywren">
+              <p>Splendid Fairywren</p>
+            </div>
+            <div class="photo-card">
+              <img loading="lazy" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/d/df/Merops_ornatus_-_Centenary_Lakes.jpg/250px-Merops_ornatus_-_Centenary_Lakes.jpg" alt="Rainbow Bee-eater">
+              <p>Rainbow Bee-eater</p>
+            </div>
+            <div class="photo-card">
+              <img loading="lazy" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/6/68/Tawny_Frogmouth_-_Sydney_Olympic_Park.jpg/250px-Tawny_Frogmouth_-_Sydney_Olympic_Park.jpg" alt="Tawny Frogmouth">
+              <p>Tawny Frogmouth</p>
+            </div>
+            <div class="photo-card">
+              <img loading="lazy" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f7/Male_Polytelis_anthopeplus_-_2.jpg/250px-Male_Polytelis_anthopeplus_-_2.jpg" alt="Regent Parrot">
+              <p>Regent Parrot</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pure-g">
+        <div class="pure-u-1-1">
+          <div id="speciesDistribution" class="vis-container"></div>
+          <p class="caption">Where each of the six species was recorded.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. CHANGE: the long view -->
+    <div class="section-container">
+      <div class="pure-g">
+        <div class="pure-u-1-1">
+          <div class="description">
+            <span class="eyebrow">06 &middot; Change</span>
+            <h2>A decade of change: 2015 vs. 2025</h2>
+            <p>Raw counts and effort-corrected reporting rates don't always move together. Comparing both for the 18 most-recorded species shows who's thriving and who's slipping.</p>
+            <p class="note"><b>Note:</b> Western Gerygone sightings rose 143% over the decade; Magpie-lark fell 51%.</p>
+          </div>
+        </div>
+      </div>
+      <div class="pure-g">
+        <div class="pure-u-1-1">
+          <div id="chartParcoord" class="vis-container"></div>
+          <p class="caption">Raw counts and reporting rates, 2015 vs. 2025, for the 18 most-recorded species.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="pure-g footer">
+      <div class="pure-u-1-1">
+        <p>Data: Birdata occurrence records via Dandjoo (BirdLife Australia, Jan&ndash;Dec 2025) combined with BirdLife Australia's statewide reporting-rate summary and habitat-based sighting summaries (shore, backyard, wetland). WA state boundary: Australian states GeoJSON, converted to TopoJSON. Built with Vega-Lite and Pure.css.</p>
+        <p>Photos via Wikimedia Commons; see each file page for photographer credit and licence.</p>
+      </div>
+    </footer>
+
+  </div> <!-- end page -->
+
+  <script type="text/javascript">
+    // One typeface for every chart. The inner quotes matter: "Source Sans 3" ends in a numeral.
+    const CHART_FONT = "'Source Sans 3', sans-serif";
+
+    const baseConfig = {
+      background: null,
+      font: CHART_FONT,
+      axis: {labelFont: CHART_FONT, titleFont: CHART_FONT, labelColor: "#5D6058", titleColor: "#383B35", titleFontWeight: 600, gridColor: "#E4E1D2", domainColor: "#B9B6A5", tickColor: "#B9B6A5"},
+      legend: {labelFont: CHART_FONT, titleFont: CHART_FONT, labelColor: "#383B35", titleColor: "#383B35", titleFontWeight: 600},
+      view: {stroke: null},
+      title: {font: CHART_FONT, fontSize: 15, fontWeight: 600, color: "#232622", anchor: "middle", offset: 14}
+    };
+
+    const habitatColours = [
+      "#2F6F8F", "#8A3B24", "#6B7A3A", "#A66A2C",
+      "#6B4C7A", "#3F7D70", "#B04A5A", "#7A6A45"
+    ];
+
+    // Recursively give every bar mark a per-category colour (habitat chart only)
+    function colourBars(s){
+      if (s.layer) { s.layer.forEach(colourBars); return; }
+      if (s.hconcat) { s.hconcat.forEach(colourBars); return; }
+      if (s.vconcat) { s.vconcat.forEach(colourBars); return; }
+      if (s.mark && (s.mark === "bar" || s.mark.type === "bar")) {
+        s.encoding = s.encoding || {};
+        const isCategory = ax => ax && (ax.type === "nominal" || ax.type === "ordinal");
+        const categoryField =
+          isCategory(s.encoding.x) ? s.encoding.x.field :
+          isCategory(s.encoding.y) ? s.encoding.y.field : null;
+
+        if (categoryField) {
+          s.encoding.color = {
+            field: categoryField,
+            type: "nominal",
+            scale: { range: habitatColours },
+            legend: null
+          };
+        }
+      }
+    }
+
+    // Swap any font hard-coded inside a spec (e.g. Helvetica in the treemap) for the page font
+    function applyChartFont(node){
+      if (Array.isArray(node)) { node.forEach(applyChartFont); return; }
+      if (!node || typeof node !== "object") return;
+      Object.keys(node).forEach(k => {
+        const v = node[k];
+        if (/^(label|title|subtitle|legend)?font$/i.test(k)) {
+          if (typeof v === "string") node[k] = CHART_FONT;
+          else if (v && typeof v === "object" && typeof v.value === "string") v.value = CHART_FONT;
+        } else {
+          applyChartFont(v);
+        }
+      });
+    }
+
+    // Merge page defaults under a spec's own config, group by group
+    function mergeConfig(base, own){
+      const out = Object.assign({}, base);
+      Object.keys(own || {}).forEach(k => {
+        const a = base[k], b = own[k];
+        out[k] = (a && b && typeof a === "object" && typeof b === "object" && !Array.isArray(b))
+          ? Object.assign({}, a, b) : b;
+      });
+      return out;
+    }
+
+    // Charts draw text onto a canvas, so the web fonts must be ready first (with a timeout as a fallback)
+    function whenFontsReady(){
+      if (!document.fonts || !document.fonts.load) return Promise.resolve();
+      const loads = ["400 16px 'Source Sans 3'", "600 16px 'Source Sans 3'", "600 16px 'Fraunces'"]
+        .map(f => document.fonts.load(f).catch(() => {}));
+      const timeout = new Promise(resolve => setTimeout(resolve, 2500));
+      return Promise.race([Promise.all(loads), timeout]);
+    }
+
+    function embedSpec(id, url){
+      fetch(url)
+        .then(r => {
+          if (!r.ok) throw new Error("HTTP " + r.status);
+          return r.json();
+        })
+        .then(spec => {
+          applyChartFont(spec);
+          // Native Vega specs (the treemap) keep their own title anchor, so centre it like the rest
+          if (spec.$schema && /\/vega\/v\d/.test(spec.$schema) && spec.title && typeof spec.title === "object") {
+            spec.title.anchor = "middle";
+          }
+          spec.config = mergeConfig(baseConfig, spec.config);
+          if (url === "chart_habitat_totals.json") colourBars(spec);
+          return vegaEmbed(id, spec, {actions:false});
+        })
+        .catch(err => {
+          console.error("Failed to load", url, err);
+          const el = document.querySelector(id);
+          if (el) el.innerHTML = '<p class="load-error">This chart could not be loaded (' + url + ').</p>';
+        });
+    }
+
+    // Listed in page order
+    whenFontsReady().then(() => {
+      [
+        ["#chartDonut",          "donut_chart.json"],
+        ["#mapA",                "bird_count_2025_map.json"],
+        ["#chartHabitat",        "chart_habitat_totals.json"],
+        ["#chartCalendar",       "chart_calendar_heatmap.json"],
+        ["#mapC",                "region_richness.json"],
+        ["#mapB",                "season_map.json"],
+        ["#chartTreemap",        "chart_season_treemap.json"],
+        ["#chartBump",           "chart_season_bump.json"],
+        ["#chartRidge",          "chart_ridgeline.json"],
+        ["#speciesDistribution", "species_distribution.json"],
+        ["#chartParcoord",       "chart_parcoord.json"]
+      ].forEach(([id, url]) => embedSpec(id, url));
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,45 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Where the birds were counted (Jan\u2013Dec 2025)",
+  "width": 820,
+  "height": 500,
+  "projection": {
+    "type": "mercator"
+  },
+  "layer": [
+    {
+      "data": {
+        "url": "wa_topo.json",
+        "format": {
+          "type": "topojson",
+          "feature": "wa"
+        }
+      },
+      "mark": {
+        "type": "geoshape",
+        "fill": "#EBE6D4",
+        "stroke": "#8A3B24",
+        "strokeWidth": 0.8
+      }
+    },
+    {
+      "data": {
+        "url": "all bird map data 2025.csv"
+      },
+      "mark": {
+        "type": "circle",
+        "size": 8,
+        "opacity": 0.35,
+        "stroke": null
+      },
+      "encoding": {
+        "longitude": {"field": "lon", "type": "quantitative"},
+        "latitude": {"field": "lat", "type": "quantitative"},
+        "color": {"value": "#C1440E"}
+      }
+    }
+  ],
+  "config": {
+    "view": {"stroke": null}
+  }
+}

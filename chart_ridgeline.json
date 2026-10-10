@@ -1,0 +1,51 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Seasonal activity profiles: six species to watch (2025)",
+  "width": 680,
+  "height": 46,
+  "data": {
+    "url": "chart_ridgeline_data.csv",
+    "format": {"type": "csv", "parse": {"month_num": "number", "n": "number"}}
+  },
+  "mark": {
+    "type": "area",
+    "interpolate": "monotone",
+    "line": {"strokeWidth": 1},
+    "opacity": 0.85
+  },
+  "encoding": {
+    "x": {
+      "field": "month_num",
+      "type": "ordinal",
+      "title": null,
+      "sort": "ascending",
+      "axis": {"labelExpr": "['','Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][datum.value]"}
+    },
+    "y": {
+      "field": "n",
+      "type": "quantitative",
+      "title": null,
+      "axis": null
+    },
+    "color": {
+      "field": "common",
+      "type": "nominal",
+      "scale": {"scheme": "dark2"},
+      "legend": null
+    },
+    "row": {
+      "field": "common",
+      "type": "nominal",
+      "title": null,
+      "header": {"labelAngle": 0, "labelAlign": "left", "labelFontSize": 12},
+      "sort": {"field": "n", "op": "sum", "order": "descending"}
+    }
+  },
+  "resolve": {
+    "scale": {"y": "independent"}
+  },
+  "config": {
+    "view": {"stroke": null},
+    "facet": {"spacing": 2}
+  }
+}

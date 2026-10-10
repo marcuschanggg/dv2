@@ -1,0 +1,36 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Total sightings by habitat type",
+  "width": 700,
+  "height": 320,
+  "data": {
+    "url": "chart_habitat_totals_data.csv"
+  },
+  "mark": {
+    "type": "bar",
+    "color": "#8A3B24"
+  },
+  "encoding": {
+    "x": {
+      "field": "habitat",
+      "type": "nominal",
+      "sort": "-y",
+      "title": null,
+      "axis": {"labelAngle": 0}
+    },
+    "y": {
+      "field": "total_sightings",
+      "type": "quantitative",
+      "title": "Total sightings"
+    },
+    "tooltip": [
+      {"field": "habitat", "title": "Habitat"},
+      {"field": "total_sightings", "title": "Total sightings"},
+      {"field": "species_count", "title": "Species recorded"}
+    ]
+  },
+  "config": {
+    "view": {"stroke": null},
+    "axis": {"grid": false}
+  }
+}

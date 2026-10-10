@@ -1,0 +1,73 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "description": "A donut chart showing the taxonomic distribution of bird orders, with center text pulled from data.",
+  "data": {
+    "url": "bird data 2025 jan - dec.csv"
+  },
+  "width": 400,
+  "height": 400,
+  "layer": [
+    {
+      "mark": {
+        "type": "arc",
+        "innerRadius": 120
+      },
+      "encoding": {
+        "theta": {
+          "aggregate": "count",
+          "type": "quantitative"
+        },
+        "color": {
+          "field": "Order (dwc:order)",
+          "type": "nominal",
+          "title": "Order",
+          "legend": {
+            "labelFontSize": 12,
+            "titleFontSize": 18,
+            "symbolSize": 450,
+            "rowPadding": 12,
+            "offset": 60,
+            "orient": "right"
+          }
+        },
+        "tooltip": [
+          {"field": "Order (dwc:order)", "type": "nominal", "title": "Order"},
+          {"aggregate": "count", "type": "quantitative", "title": "Record Count"}
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "baseline": "middle",
+        "fontSize": 20,
+        "fontWeight": "bold",
+        "dy": -10
+      },
+      "encoding": {
+        "text": {
+          "aggregate": "min",
+          "field": "Kingdom (dwc:kingdom)",
+          "type": "nominal"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "baseline": "middle",
+        "fontSize": 16,
+        "dy": 15
+      },
+      "encoding": {
+        "text": {
+          "aggregate": "count",
+          "type": "quantitative",
+          "format": ","
+        }
+      }
+    }
+  ]
+}

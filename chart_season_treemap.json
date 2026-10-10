@@ -1,0 +1,376 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "title": {
+    "text": "WA bird sightings by season and taxonomic order (2025)",
+    "anchor": "start",
+    "offset": 10,
+    "fontSize": 14,
+    "fontWeight": "bold",
+    "font": "Helvetica Neue, Arial, sans-serif"
+  },
+  "width": 760,
+  "height": 460,
+  "padding": 2.5,
+  "autosize": "none",
+  "signals": [
+    {
+      "name": "layout",
+      "value": "squarify",
+      "bind": {
+        "input": "select",
+        "options": [
+          "squarify",
+          "binary",
+          "slicedice"
+        ]
+      }
+    },
+    {
+      "name": "aspectRatio",
+      "value": 1.6,
+      "bind": {
+        "input": "range",
+        "min": 1,
+        "max": 5,
+        "step": 0.1
+      }
+    }
+  ],
+  "data": [
+    {
+      "name": "raw",
+      "url": "chart_season_treemap_data.csv",
+      "format": {
+        "type": "csv",
+        "parse": "auto"
+      }
+    },
+    {
+      "name": "tree",
+      "source": "raw",
+      "transform": [
+        {
+          "type": "nest",
+          "keys": [
+            "season"
+          ]
+        },
+        {
+          "type": "treemap",
+          "field": "value",
+          "sort": {
+            "field": "value",
+            "order": "descending"
+          },
+          "round": true,
+          "method": {
+            "signal": "layout"
+          },
+          "ratio": {
+            "signal": "aspectRatio"
+          },
+          "size": [
+            {
+              "signal": "width"
+            },
+            {
+              "signal": "height"
+            }
+          ],
+          "paddingInner": 1,
+          "paddingTop": 22,
+          "paddingRight": 2,
+          "paddingBottom": 2,
+          "paddingLeft": 2
+        }
+      ]
+    },
+    {
+      "name": "season_nodes",
+      "source": "tree",
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "datum.children && datum.depth === 1"
+        }
+      ]
+    },
+    {
+      "name": "leaves",
+      "source": "tree",
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "!datum.children"
+        }
+      ]
+    },
+    {
+      "name": "biggest",
+      "source": "leaves",
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "datum.season === 'Spring' && datum.order === 'Songbirds'"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": [
+        "Summer",
+        "Autumn",
+        "Winter",
+        "Spring"
+      ],
+      "range": [
+        "#C1440E",
+        "#B8862E",
+        "#2E6E72",
+        "#5C7A3A"
+      ]
+    },
+    {
+      "name": "opacity",
+      "type": "sqrt",
+      "domain": {
+        "data": "leaves",
+        "field": "value"
+      },
+      "range": [
+        0.35,
+        1.0
+      ]
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "season_nodes"
+      },
+      "interactive": false,
+      "encode": {
+        "enter": {
+          "fill": {
+            "value": "transparent"
+          },
+          "stroke": {
+            "value": "#8A3B24"
+          },
+          "strokeWidth": {
+            "value": 1.5
+          }
+        },
+        "update": {
+          "x": {
+            "field": "x0"
+          },
+          "y": {
+            "field": "y0"
+          },
+          "x2": {
+            "field": "x1"
+          },
+          "y2": {
+            "field": "y1"
+          }
+        }
+      }
+    },
+    {
+      "type": "rect",
+      "from": {
+        "data": "leaves"
+      },
+      "encode": {
+        "enter": {
+          "stroke": {
+            "value": "#F2F1E9"
+          },
+          "strokeWidth": {
+            "value": 1
+          },
+          "tooltip": {
+            "signal": "{'Season': datum.season, 'Order': datum.order, 'Sightings': datum.value}"
+          }
+        },
+        "update": {
+          "x": {
+            "field": "x0"
+          },
+          "y": {
+            "field": "y0"
+          },
+          "x2": {
+            "field": "x1"
+          },
+          "y2": {
+            "field": "y1"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "season"
+          },
+          "fillOpacity": {
+            "scale": "opacity",
+            "field": "value"
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "from": {
+        "data": "season_nodes"
+      },
+      "interactive": false,
+      "encode": {
+        "enter": {
+          "font": {
+            "value": "Helvetica Neue, Arial, sans-serif"
+          },
+          "align": {
+            "value": "left"
+          },
+          "baseline": {
+            "value": "top"
+          },
+          "fontSize": {
+            "value": 13
+          },
+          "fontWeight": {
+            "value": "bold"
+          },
+          "dx": {
+            "value": 4
+          },
+          "dy": {
+            "value": 4
+          }
+        },
+        "update": {
+          "x": {
+            "field": "x0"
+          },
+          "y": {
+            "field": "y0"
+          },
+          "text": {
+            "field": "key"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "key"
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "from": {
+        "data": "leaves"
+      },
+      "interactive": false,
+      "encode": {
+        "enter": {
+          "font": {
+            "value": "Arial, sans-serif"
+          },
+          "fontWeight": {
+            "value": "bold"
+          },
+          "align": {
+            "value": "center"
+          },
+          "baseline": {
+            "value": "middle"
+          },
+          "fill": {
+            "value": "#222222"
+          },
+          "fontSize": {
+            "value": 11
+          }
+        },
+        "update": {
+          "x": {
+            "signal": "0.5 * (datum.x0 + datum.x1)"
+          },
+          "y": {
+            "signal": "0.5 * (datum.y0 + datum.y1)"
+          },
+          "text": {
+            "field": "order"
+          },
+          "opacity": [
+            {
+              "test": "(datum.x1 - datum.x0) > (length(datum.order) * 7) && (datum.y1 - datum.y0) > 25",
+              "value": 1
+            },
+            {
+              "value": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "text",
+      "from": {
+        "data": "biggest"
+      },
+      "interactive": false,
+      "encode": {
+        "enter": {
+          "font": {
+            "value": "Arial, sans-serif"
+          },
+          "align": {
+            "value": "center"
+          },
+          "baseline": {
+            "value": "middle"
+          },
+          "fill": {
+            "value": "#222222"
+          },
+          "fontSize": {
+            "value": 11
+          },
+          "dy": {
+            "value": 17
+          }
+        },
+        "update": {
+          "x": {
+            "signal": "0.5 * (datum.x0 + datum.x1)"
+          },
+          "y": {
+            "signal": "0.5 * (datum.y0 + datum.y1)"
+          },
+          "text": {
+            "signal": "format(datum.value, ',') + ' sightings: 62% of spring'"
+          },
+          "opacity": [
+            {
+              "test": "(datum.x1 - datum.x0) > 190 && (datum.y1 - datum.y0) > 60",
+              "value": 1
+            },
+            {
+              "value": 0
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
