@@ -159,6 +159,8 @@
       overflow-x: auto;
       font-family: var(--font-text);
     }
+    /* Charts sized to their container (the donut) need the embed wrapper to fill it */
+    #chartDonut .vega-embed { width: 100%; }
     .vis-container .vega-bindings {
       font-size: 13px;
       color: var(--muted);
@@ -438,7 +440,7 @@
       background: null,
       font: CHART_FONT,
       axis: {labelFont: CHART_FONT, titleFont: CHART_FONT, labelColor: "#5D6058", titleColor: "#383B35", titleFontWeight: 600, gridColor: "#E4E1D2", domainColor: "#B9B6A5", tickColor: "#B9B6A5"},
-      legend: {labelFont: CHART_FONT, titleFont: CHART_FONT, labelColor: "#383B35", titleColor: "#383B35", titleFontWeight: 600},
+      legend: {labelFont: CHART_FONT, titleFont: CHART_FONT, labelColor: "#383B35", titleColor: "#383B35", titleFontWeight: 600, layout: {top: {anchor: "middle"}, bottom: {anchor: "middle"}}},
       view: {stroke: null},
       title: {font: CHART_FONT, fontSize: 15, fontWeight: 600, color: "#232622", anchor: "middle", offset: 14}
     };

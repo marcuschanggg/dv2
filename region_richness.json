@@ -1,47 +1,361 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": "Species Richness Across Regions",
-  "width": 700,
+  "width": 820,
   "height": 500,
   "projection": {
     "type": "mercator"
   },
-  "data": {
-    "url": "Regional_Development_Commissions_Regions_DPIRD_020_WA_GDA2020_Public.json",
-    "format": {
-      "type": "topojson",
-      "feature": "Regional_Development_Commissions_Regions_DPIRD_020_WA_GDA2020_Public"
+  "config": {
+    "view": {
+      "stroke": null
     }
   },
-  "transform": [
+  "layer": [
     {
-      "lookup": "properties.region",
-      "from": {
-        "data": {"url": "region_richness_data.csv"},
-        "key": "region",
-        "fields": ["richness", "n_records"]
+      "data": {
+        "url": "Regional_Development_Commissions_Regions_DPIRD_020_WA_GDA2020_Public.json",
+        "format": {
+          "type": "topojson",
+          "feature": "Regional_Development_Commissions_Regions_DPIRD_020_WA_GDA2020_Public"
+        }
+      },
+      "transform": [
+        {
+          "lookup": "properties.region",
+          "from": {
+            "data": {
+              "url": "region_richness_data.csv"
+            },
+            "key": "region",
+            "fields": [
+              "richness",
+              "n_records"
+            ]
+          }
+        }
+      ],
+      "mark": {
+        "type": "geoshape",
+        "stroke": "#FBFAF5",
+        "strokeWidth": 1
+      },
+      "encoding": {
+        "color": {
+          "field": "richness",
+          "type": "quantitative",
+          "scale": {
+            "scheme": "yellowgreenblue"
+          },
+          "legend": {
+            "title": "Number of species",
+            "orient": "bottom",
+            "direction": "horizontal",
+            "gradientLength": 320,
+            "gradientThickness": 12,
+            "offset": 16
+          }
+        },
+        "tooltip": [
+          {
+            "field": "properties.region",
+            "title": "Region"
+          },
+          {
+            "field": "richness",
+            "title": "Distinct species"
+          },
+          {
+            "field": "n_records",
+            "title": "Sightings"
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "lat": -31.0,
+            "lon": 118.0,
+            "lat2": -31.0,
+            "lon2": 129.6
+          }
+        ]
+      },
+      "mark": {
+        "type": "rule",
+        "color": "#6B6A5C",
+        "strokeWidth": 1
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "longitude2": {
+          "field": "lon2"
+        },
+        "latitude2": {
+          "field": "lat2"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "lat": -31.0,
+            "lon": 118.0
+          }
+        ]
+      },
+      "mark": {
+        "type": "circle",
+        "size": 40,
+        "color": "#232622",
+        "stroke": "#FFFFFF",
+        "strokeWidth": 1.5
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "lat": -31.0,
+            "lon": 129.9
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "text": [
+          "Wheatbelt",
+          "162 species, the most"
+        ],
+        "align": "left",
+        "baseline": "middle",
+        "dx": 4,
+        "dy": 0,
+        "fontSize": 12,
+        "fontWeight": 600,
+        "lineHeight": 15,
+        "color": "#232622"
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "lat": -17.3,
+            "lon": 126.5,
+            "lat2": -17.3,
+            "lon2": 129.6
+          }
+        ]
+      },
+      "mark": {
+        "type": "rule",
+        "color": "#6B6A5C",
+        "strokeWidth": 1
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "longitude2": {
+          "field": "lon2"
+        },
+        "latitude2": {
+          "field": "lat2"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "lat": -17.3,
+            "lon": 126.5
+          }
+        ]
+      },
+      "mark": {
+        "type": "circle",
+        "size": 40,
+        "color": "#232622",
+        "stroke": "#FFFFFF",
+        "strokeWidth": 1.5
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "lat": -17.3,
+            "lon": 129.9
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "text": [
+          "Kimberley",
+          "143 species, far fewer records"
+        ],
+        "align": "left",
+        "baseline": "middle",
+        "dx": 4,
+        "dy": 0,
+        "fontSize": 12,
+        "fontWeight": 600,
+        "lineHeight": 15,
+        "color": "#232622"
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "lat": -22.0,
+            "lon": 118.8,
+            "lat2": -22.0,
+            "lon2": 129.6
+          }
+        ]
+      },
+      "mark": {
+        "type": "rule",
+        "color": "#6B6A5C",
+        "strokeWidth": 1
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "longitude2": {
+          "field": "lon2"
+        },
+        "latitude2": {
+          "field": "lat2"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "lat": -22.0,
+            "lon": 118.8
+          }
+        ]
+      },
+      "mark": {
+        "type": "circle",
+        "size": 40,
+        "color": "#232622",
+        "stroke": "#FFFFFF",
+        "strokeWidth": 1.5
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "lat": -22.0,
+            "lon": 129.9
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "text": [
+          "Pilbara",
+          "41 species, the fewest"
+        ],
+        "align": "left",
+        "baseline": "middle",
+        "dx": 4,
+        "dy": 0,
+        "fontSize": 12,
+        "fontWeight": 600,
+        "lineHeight": 15,
+        "color": "#232622"
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        }
       }
     }
-  ],
-  "mark": {
-    "type": "geoshape",
-    "stroke": "#FBFAF5",
-    "strokeWidth": 1
-  },
-  "encoding": {
-    "color": {
-      "field": "richness",
-      "type": "quantitative",
-      "scale": {"scheme": "yellowgreenblue"},
-      "legend": {"title": "Number of Species"}
-    },
-    "tooltip": [
-      {"field": "properties.region", "title": "Region"},
-      {"field": "richness", "title": "Distinct species"},
-      {"field": "n_records", "title": "Sightings"}
-    ]
-  },
-  "config": {
-    "view": {"stroke": null}
-  }
+  ]
 }

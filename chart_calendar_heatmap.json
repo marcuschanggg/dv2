@@ -16,7 +16,7 @@
   },
   "transform": [
     {
-      "calculate": "datum.count == 0 ? '0' : datum.count <= 5 ? '1–5' : datum.count <= 10 ? '6–10' : datum.count <= 20 ? '11–20' : '21+'",
+      "calculate": "datum.count == 0 ? '0' : datum.count <= 5 ? '1\u20135' : datum.count <= 10 ? '6\u201310' : datum.count <= 20 ? '11\u201320' : '21+'",
       "as": "bucket"
     }
   ],
@@ -74,7 +74,10 @@
                   43,
                   48
                 ],
-                "labelExpr": "{'0':'Jan','4':'Feb','8':'Mar','13':'Apr','17':'May','21':'Jun','26':'Jul','30':'Aug','35':'Sep','39':'Oct','43':'Nov','48':'Dec'}[datum.value]"
+                "labelExpr": "{'0':'Jan','4':'Feb','8':'Mar','13':'Apr','17':'May','21':'Jun','26':'Jul','30':'Aug','35':'Sep','39':'Oct','43':'Nov','48':'Dec'}[datum.value]",
+                "labelAngle": 0,
+                "labelAlign": "left",
+                "labelOverlap": false
               }
             },
             "y": {
@@ -114,9 +117,9 @@
               "scale": {
                 "domain": [
                   "0",
-                  "1–5",
-                  "6–10",
-                  "11–20",
+                  "1\u20135",
+                  "6\u201310",
+                  "11\u201320",
                   "21+"
                 ],
                 "range": [
@@ -209,7 +212,7 @@
           },
           "mark": {
             "type": "text",
-            "text": "Oct–Nov: 25% of all records",
+            "text": "Oct\u2013Nov: 25% of all records",
             "align": "center",
             "baseline": "top",
             "fontSize": 12,

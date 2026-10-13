@@ -33,13 +33,190 @@
         "stroke": null
       },
       "encoding": {
-        "longitude": {"field": "lon", "type": "quantitative"},
-        "latitude": {"field": "lat", "type": "quantitative"},
-        "color": {"value": "#C1440E"}
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "color": {
+          "value": "#C1440E"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "lat": -31.95,
+            "lon": 115.86,
+            "lat2": -31.95,
+            "lon2": 112.6
+          }
+        ]
+      },
+      "mark": {
+        "type": "rule",
+        "color": "#6B6A5C",
+        "strokeWidth": 1
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "longitude2": {
+          "field": "lon2"
+        },
+        "latitude2": {
+          "field": "lat2"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "lat": -31.95,
+            "lon": 115.86
+          }
+        ]
+      },
+      "mark": {
+        "type": "circle",
+        "size": 40,
+        "color": "#232622",
+        "stroke": "#FFFFFF",
+        "strokeWidth": 1.5
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "lat": -31.95,
+            "lon": 112.4
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "text": [
+          "Perth: over half of all points",
+          "lie within 100 km of the city"
+        ],
+        "align": "right",
+        "baseline": "middle",
+        "dx": -6,
+        "dy": 0,
+        "fontSize": 12,
+        "fontWeight": 600,
+        "lineHeight": 15,
+        "color": "#232622"
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "lat": -23,
+            "lon": 113.3,
+            "lat2": -23,
+            "lon2": 129.1
+          }
+        ]
+      },
+      "mark": {
+        "type": "rule",
+        "color": "#6B6A5C",
+        "strokeWidth": 1,
+        "strokeDash": [
+          4,
+          4
+        ]
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "longitude2": {
+          "field": "lon2"
+        },
+        "latitude2": {
+          "field": "lat2"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "lat": -22.0,
+            "lon": 128.9
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "text": [
+          "North of 23\u00b0S, only about",
+          "6% of all points"
+        ],
+        "align": "right",
+        "baseline": "middle",
+        "dx": 0,
+        "dy": -6,
+        "fontSize": 12,
+        "fontWeight": 600,
+        "lineHeight": 15,
+        "color": "#232622"
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        }
       }
     }
   ],
   "config": {
-    "view": {"stroke": null}
+    "view": {
+      "stroke": null
+    }
   }
 }

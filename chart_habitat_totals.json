@@ -6,31 +6,82 @@
   "data": {
     "url": "chart_habitat_totals_data.csv"
   },
-  "mark": {
-    "type": "bar",
-    "color": "#8A3B24"
-  },
-  "encoding": {
-    "x": {
-      "field": "habitat",
-      "type": "nominal",
-      "sort": "-y",
-      "title": null,
-      "axis": {"labelAngle": 0}
-    },
-    "y": {
-      "field": "total_sightings",
-      "type": "quantitative",
-      "title": "Total sightings"
-    },
-    "tooltip": [
-      {"field": "habitat", "title": "Habitat"},
-      {"field": "total_sightings", "title": "Total sightings"},
-      {"field": "species_count", "title": "Species recorded"}
-    ]
-  },
   "config": {
-    "view": {"stroke": null},
-    "axis": {"grid": false}
-  }
+    "view": {
+      "stroke": null
+    },
+    "axis": {
+      "grid": false
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "bar",
+        "color": "#8A3B24"
+      },
+      "encoding": {
+        "x": {
+          "field": "habitat",
+          "type": "nominal",
+          "sort": "-y",
+          "title": null,
+          "axis": {
+            "labelAngle": 0
+          }
+        },
+        "y": {
+          "field": "total_sightings",
+          "type": "quantitative",
+          "title": null,
+          "axis": null
+        },
+        "tooltip": [
+          {
+            "field": "habitat",
+            "title": "Habitat"
+          },
+          {
+            "field": "total_sightings",
+            "title": "Total sightings"
+          },
+          {
+            "field": "species_count",
+            "title": "Species recorded"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "dy": -9,
+        "fontSize": 13,
+        "fontWeight": 600,
+        "color": "#383B35"
+      },
+      "encoding": {
+        "x": {
+          "field": "habitat",
+          "type": "nominal",
+          "sort": "-y",
+          "title": null,
+          "axis": {
+            "labelAngle": 0
+          }
+        },
+        "y": {
+          "field": "total_sightings",
+          "type": "quantitative",
+          "title": null,
+          "axis": null
+        },
+        "text": {
+          "field": "total_sightings",
+          "type": "quantitative",
+          "format": ","
+        }
+      }
+    }
+  ]
 }

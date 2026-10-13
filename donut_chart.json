@@ -4,7 +4,7 @@
   "data": {
     "url": "bird data 2025 jan - dec.csv"
   },
-  "width": 400,
+  "width": "container",
   "height": 400,
   "layer": [
     {
@@ -22,17 +22,27 @@
           "type": "nominal",
           "title": "Order",
           "legend": {
+            "orient": "bottom",
+            "direction": "horizontal",
+            "offset": 28,
             "labelFontSize": 12,
-            "titleFontSize": 18,
-            "symbolSize": 450,
-            "rowPadding": 12,
-            "offset": 60,
-            "orient": "right"
+            "titleFontSize": 14,
+            "symbolSize": 220,
+            "columnPadding": 24,
+            "columns": 2
           }
         },
         "tooltip": [
-          {"field": "Order (dwc:order)", "type": "nominal", "title": "Order"},
-          {"aggregate": "count", "type": "quantitative", "title": "Record Count"}
+          {
+            "field": "Order (dwc:order)",
+            "type": "nominal",
+            "title": "Order"
+          },
+          {
+            "aggregate": "count",
+            "type": "quantitative",
+            "title": "Record Count"
+          }
         ]
       }
     },
@@ -69,5 +79,9 @@
         }
       }
     }
-  ]
+  ],
+  "autosize": {
+    "type": "fit-x",
+    "contains": "padding"
+  }
 }
