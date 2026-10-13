@@ -3,7 +3,7 @@
   "title": {
     "text": "Bird populations in WA: 2015 vs. 2025 (top 18 species)",
     "subtitle": "Magpie-lark fell from 4th to 17th: its count halved (\u221251%)",
-    "subtitleColor": "#8A3B24",
+    "subtitleColor": "#0A6B1D",
     "subtitleFontSize": 13,
     "subtitleFontWeight": 600,
     "subtitlePadding": 6
@@ -54,7 +54,7 @@
     {
       "mark": {
         "type": "line",
-        "opacity": 0.35,
+        "opacity": 0.75,
         "strokeWidth": 4.5,
         "interpolate": "monotone"
       },
@@ -86,7 +86,46 @@
           "field": "common",
           "type": "nominal",
           "scale": {
-            "scheme": "tableau20"
+            "domain": [
+              "Australian Raven",
+              "Willie Wagtail",
+              "Australian Ringneck",
+              "Singing Honeyeater",
+              "Red Wattlebird",
+              "Australian Magpie",
+              "Magpie-lark",
+              "Brown Honeyeater",
+              "Galah",
+              "Western Gerygone",
+              "Silvereye",
+              "Striated Pardalote",
+              "Grey Fantail",
+              "Weebill",
+              "Black-faced Cuckoo-shrike",
+              "New Holland Honeyeater",
+              "Welcome Swallow",
+              "Pacific Black Duck"
+            ],
+            "range": [
+              "#C43F3E",
+              "#12B382",
+              "#8C54C3",
+              "#BE9014",
+              "#0581A3",
+              "#EB648A",
+              "#118D29",
+              "#9085FB",
+              "#A56202",
+              "#09ACBA",
+              "#B5418B",
+              "#81A904",
+              "#426DD7",
+              "#EA6F2F",
+              "#12867C",
+              "#CB6FD1",
+              "#7F770D",
+              "#069FF9"
+            ]
           },
           "legend": null
         },
@@ -100,11 +139,12 @@
           },
           {
             "field": "population",
-            "title": "Population"
+            "title": "Count",
+            "format": ","
           },
           {
             "field": "change_pct",
-            "title": "Count change (%)"
+            "title": "Change (%)"
           }
         ]
       }
@@ -129,6 +169,48 @@
         "color": {
           "field": "common",
           "type": "nominal",
+          "scale": {
+            "domain": [
+              "Australian Raven",
+              "Willie Wagtail",
+              "Australian Ringneck",
+              "Singing Honeyeater",
+              "Red Wattlebird",
+              "Australian Magpie",
+              "Magpie-lark",
+              "Brown Honeyeater",
+              "Galah",
+              "Western Gerygone",
+              "Silvereye",
+              "Striated Pardalote",
+              "Grey Fantail",
+              "Weebill",
+              "Black-faced Cuckoo-shrike",
+              "New Holland Honeyeater",
+              "Welcome Swallow",
+              "Pacific Black Duck"
+            ],
+            "range": [
+              "#C43F3E",
+              "#12B382",
+              "#8C54C3",
+              "#BE9014",
+              "#0581A3",
+              "#EB648A",
+              "#118D29",
+              "#9085FB",
+              "#A56202",
+              "#09ACBA",
+              "#B5418B",
+              "#81A904",
+              "#426DD7",
+              "#EA6F2F",
+              "#12867C",
+              "#CB6FD1",
+              "#7F770D",
+              "#069FF9"
+            ]
+          },
           "legend": null
         }
       }
@@ -161,12 +243,50 @@
           "type": "nominal"
         },
         "color": {
-          "condition": {
-            "test": "datum.common == 'Magpie-lark'",
-            "value": "#8A3B24"
-          },
           "field": "common",
           "type": "nominal",
+          "scale": {
+            "domain": [
+              "Australian Raven",
+              "Willie Wagtail",
+              "Australian Ringneck",
+              "Singing Honeyeater",
+              "Red Wattlebird",
+              "Australian Magpie",
+              "Magpie-lark",
+              "Brown Honeyeater",
+              "Galah",
+              "Western Gerygone",
+              "Silvereye",
+              "Striated Pardalote",
+              "Grey Fantail",
+              "Weebill",
+              "Black-faced Cuckoo-shrike",
+              "New Holland Honeyeater",
+              "Welcome Swallow",
+              "Pacific Black Duck"
+            ],
+            "range": [
+              "#9A2929",
+              "#05684B",
+              "#6C3C9A",
+              "#6F530A",
+              "#07617C",
+              "#97274D",
+              "#0A6B1D",
+              "#5346A7",
+              "#7D4A07",
+              "#0D646C",
+              "#8E2B6B",
+              "#496201",
+              "#2E51AA",
+              "#903A03",
+              "#04665E",
+              "#803385",
+              "#605A06",
+              "#025C93"
+            ]
+          },
           "legend": null
         }
       }
@@ -199,12 +319,50 @@
           "type": "nominal"
         },
         "color": {
-          "condition": {
-            "test": "datum.common == 'Magpie-lark'",
-            "value": "#8A3B24"
-          },
           "field": "common",
           "type": "nominal",
+          "scale": {
+            "domain": [
+              "Australian Raven",
+              "Willie Wagtail",
+              "Australian Ringneck",
+              "Singing Honeyeater",
+              "Red Wattlebird",
+              "Australian Magpie",
+              "Magpie-lark",
+              "Brown Honeyeater",
+              "Galah",
+              "Western Gerygone",
+              "Silvereye",
+              "Striated Pardalote",
+              "Grey Fantail",
+              "Weebill",
+              "Black-faced Cuckoo-shrike",
+              "New Holland Honeyeater",
+              "Welcome Swallow",
+              "Pacific Black Duck"
+            ],
+            "range": [
+              "#9A2929",
+              "#05684B",
+              "#6C3C9A",
+              "#6F530A",
+              "#07617C",
+              "#97274D",
+              "#0A6B1D",
+              "#5346A7",
+              "#7D4A07",
+              "#0D646C",
+              "#8E2B6B",
+              "#496201",
+              "#2E51AA",
+              "#903A03",
+              "#04665E",
+              "#803385",
+              "#605A06",
+              "#025C93"
+            ]
+          },
           "legend": null
         }
       }
@@ -278,7 +436,7 @@
       "mark": {
         "type": "line",
         "strokeWidth": 6,
-        "color": "#8A3B24",
+        "color": "#118D29",
         "opacity": 1,
         "interpolate": "monotone"
       },
@@ -310,7 +468,7 @@
         "type": "point",
         "filled": true,
         "size": 130,
-        "color": "#8A3B24",
+        "color": "#118D29",
         "opacity": 1
       },
       "encoding": {
