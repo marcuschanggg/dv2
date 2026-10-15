@@ -54,7 +54,7 @@
     {
       "mark": {
         "type": "line",
-        "opacity": 0.75,
+        "opacity": 0.3,
         "strokeWidth": 4.5,
         "interpolate": "monotone"
       },
@@ -154,7 +154,7 @@
         "type": "point",
         "filled": true,
         "size": 90,
-        "opacity": 1
+        "opacity": 0.4
       },
       "encoding": {
         "x": {
@@ -288,6 +288,13 @@
             ]
           },
           "legend": null
+        },
+        "opacity": {
+          "condition": {
+            "test": "datum.common == 'Magpie-lark'",
+            "value": 1
+          },
+          "value": 0.45
         }
       }
     },
@@ -364,6 +371,13 @@
             ]
           },
           "legend": null
+        },
+        "opacity": {
+          "condition": {
+            "test": "datum.common == 'Magpie-lark'",
+            "value": 1
+          },
+          "value": 0.45
         }
       }
     },
@@ -394,6 +408,13 @@
           "field": "population",
           "type": "quantitative",
           "format": ","
+        },
+        "opacity": {
+          "condition": {
+            "test": "datum.common == 'Magpie-lark'",
+            "value": 1
+          },
+          "value": 0.45
         }
       }
     },
@@ -424,6 +445,13 @@
           "field": "population",
           "type": "quantitative",
           "format": ","
+        },
+        "opacity": {
+          "condition": {
+            "test": "datum.common == 'Magpie-lark'",
+            "value": 1
+          },
+          "value": 0.45
         }
       }
     },

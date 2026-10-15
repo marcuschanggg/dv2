@@ -324,15 +324,141 @@
       }
     },
     {
-      "type": "text",
       "from": {
         "data": "biggest"
       },
       "interactive": false,
+      "type": "rect",
+      "encode": {
+        "enter": {
+          "fill": {
+            "value": "#FFFFFF"
+          },
+          "fillOpacity": {
+            "value": 0.93
+          },
+          "stroke": {
+            "value": "#8A3B24"
+          },
+          "strokeWidth": {
+            "value": 1
+          },
+          "cornerRadius": {
+            "value": 3
+          }
+        },
+        "update": {
+          "xc": {
+            "signal": "0.5 * (datum.x0 + datum.x1)"
+          },
+          "width": {
+            "value": 196
+          },
+          "y": {
+            "signal": "datum.y1 - 54"
+          },
+          "height": {
+            "value": 32
+          },
+          "opacity": [
+            {
+              "test": "(datum.x1 - datum.x0) > 190 && (datum.y1 - datum.y0) > 140",
+              "value": 1
+            },
+            {
+              "value": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "from": {
+        "data": "biggest"
+      },
+      "interactive": false,
+      "type": "rule",
+      "encode": {
+        "enter": {
+          "stroke": {
+            "value": "#8A3B24"
+          },
+          "strokeWidth": {
+            "value": 1.8
+          }
+        },
+        "update": {
+          "x": {
+            "signal": "0.5 * (datum.x0 + datum.x1)"
+          },
+          "y": {
+            "signal": "datum.y1 - 54"
+          },
+          "y2": {
+            "signal": "0.5 * (datum.y0 + datum.y1) + 18"
+          },
+          "opacity": [
+            {
+              "test": "(datum.x1 - datum.x0) > 190 && (datum.y1 - datum.y0) > 140",
+              "value": 1
+            },
+            {
+              "value": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "from": {
+        "data": "biggest"
+      },
+      "interactive": false,
+      "type": "symbol",
+      "encode": {
+        "enter": {
+          "shape": {
+            "value": "triangle-up"
+          },
+          "size": {
+            "value": 90
+          },
+          "fill": {
+            "value": "#8A3B24"
+          }
+        },
+        "update": {
+          "x": {
+            "signal": "0.5 * (datum.x0 + datum.x1)"
+          },
+          "y": {
+            "signal": "0.5 * (datum.y0 + datum.y1) + 14"
+          },
+          "opacity": [
+            {
+              "test": "(datum.x1 - datum.x0) > 190 && (datum.y1 - datum.y0) > 140",
+              "value": 1
+            },
+            {
+              "value": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "from": {
+        "data": "biggest"
+      },
+      "interactive": false,
+      "type": "text",
       "encode": {
         "enter": {
           "font": {
             "value": "Arial, sans-serif"
+          },
+          "fontWeight": {
+            "value": "bold"
           },
           "align": {
             "value": "center"
@@ -344,10 +470,7 @@
             "value": "#222222"
           },
           "fontSize": {
-            "value": 11
-          },
-          "dy": {
-            "value": 17
+            "value": 12
           }
         },
         "update": {
@@ -355,14 +478,14 @@
             "signal": "0.5 * (datum.x0 + datum.x1)"
           },
           "y": {
-            "signal": "0.5 * (datum.y0 + datum.y1)"
+            "signal": "datum.y1 - 38"
           },
           "text": {
-            "signal": "format(datum.value, ',') + ' sightings: 62% of spring'"
+            "value": "Songbirds: 62% of spring sightings"
           },
           "opacity": [
             {
-              "test": "(datum.x1 - datum.x0) > 190 && (datum.y1 - datum.y0) > 60",
+              "test": "(datum.x1 - datum.x0) > 190 && (datum.y1 - datum.y0) > 140",
               "value": 1
             },
             {

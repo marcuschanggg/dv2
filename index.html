@@ -220,6 +220,21 @@
       line-height: 1.6;
       color: var(--muted);
     }
+    .footer-block { max-width: 46em; margin: 0 auto 24px; text-align: left; }
+    .footer-block h3 {
+      margin: 0 0 6px;
+      font-family: var(--font-display);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: var(--ink);
+    }
+    .footer-block p, .footer-block li { font-size: 14px; line-height: 1.6; color: var(--body); margin: 0; }
+    .footer-block .sources { margin: 0; padding: 0; list-style: none; }
+    .footer-block .sources li { margin: 0 0 4px; overflow-wrap: anywhere; }
+    .footer-block a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
+    .footer .photo-credit { max-width: 46em; margin: 8px auto 0; text-align: left; font-size: 12px; color: var(--muted); }
+
 
     /* ---------- Small screens ---------- */
     @media (max-width: 700px) {
@@ -425,8 +440,21 @@
     <!-- FOOTER -->
     <footer class="pure-g footer">
       <div class="pure-u-1-1">
-        <p>Data: Birdata occurrence records via Dandjoo (BirdLife Australia, Jan&ndash;Dec 2025) combined with BirdLife Australia's statewide reporting-rate summary and habitat-based sighting summaries (shore, backyard, wetland). WA state boundary: Australian states GeoJSON, converted to TopoJSON. Built with Vega-Lite and Pure.css.</p>
-        <p>Photos via Wikimedia Commons; see each file page for photographer credit and licence.</p>
+        <div class="footer-block">
+          <h3>Data sources</h3>
+          <ul class="sources">
+            <li><a href="https://dandjoo.bio.wa.gov.au/" target="_blank" rel="noopener">https://dandjoo.bio.wa.gov.au/</a> (Dandjoo, Western Australian biodiversity data)</li>
+            <li><a href="https://birdata.birdlife.org.au/" target="_blank" rel="noopener">https://birdata.birdlife.org.au/</a> (Birdata, BirdLife Australia)</li>
+          </ul>
+        </div>
+        <div class="footer-block">
+          <h3>Authorship</h3>
+          <p>Visualisation by Marcus Chang<br>October 2026</p>
+        </div>
+        <div class="footer-block">
+          <h3>AI Acknowledgement</h3>
+          <p>I used Claude to clean the data from the sources above and to create data that is useable in Vega-Lite. I made sure to crosscheck the data that was output to ensure that no synthetic data was used in the process.</p>
+        </div>
       </div>
     </footer>
 
