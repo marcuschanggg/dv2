@@ -29,7 +29,12 @@
             "titleFontSize": 14,
             "symbolSize": 220,
             "columnPadding": 24,
-            "columns": 2
+            "columns": 2,
+            "labelExpr": "{'Psittaciformes':'Parrots (Psittaciformes)','Passeriformes':'Songbirds (Passeriformes)','Coraciiformes':'Bee-eaters (Coraciiformes)','Caprimulgiformes':'Frogmouths (Caprimulgiformes)'}[datum.label]"
+          },
+          "sort": {
+            "op": "count",
+            "order": "descending"
           }
         },
         "tooltip": [
@@ -43,7 +48,12 @@
             "type": "quantitative",
             "title": "Record Count"
           }
-        ]
+        ],
+        "order": {
+          "aggregate": "count",
+          "type": "quantitative",
+          "sort": "descending"
+        }
       }
     },
     {
