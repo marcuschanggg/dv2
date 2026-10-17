@@ -30,7 +30,8 @@
             "key": "region",
             "fields": [
               "richness",
-              "n_records"
+              "n_records",
+              "std_richness"
             ]
           }
         }
@@ -42,13 +43,13 @@
       },
       "encoding": {
         "color": {
-          "field": "richness",
+          "field": "std_richness",
           "type": "quantitative",
           "scale": {
             "scheme": "yellowgreenblue"
           },
           "legend": {
-            "title": "Number of species",
+            "title": "Species per 1,000 records (standardised)",
             "orient": "bottom",
             "direction": "horizontal",
             "gradientLength": 320,
@@ -62,8 +63,12 @@
             "title": "Region"
           },
           {
+            "field": "std_richness",
+            "title": "Species per 1,000 records"
+          },
+          {
             "field": "richness",
-            "title": "Distinct species"
+            "title": "Species recorded (raw)"
           },
           {
             "field": "n_records",
@@ -145,7 +150,7 @@
         "type": "text",
         "text": [
           "Wheatbelt",
-          "162 species, the most"
+          "92 (raw 162, the most)"
         ],
         "align": "left",
         "baseline": "middle",
@@ -240,7 +245,7 @@
         "type": "text",
         "text": [
           "Kimberley",
-          "143 species, far fewer records"
+          "146, the highest"
         ],
         "align": "left",
         "baseline": "middle",
@@ -335,7 +340,7 @@
         "type": "text",
         "text": [
           "Pilbara",
-          "41 species, the fewest"
+          "73, the lowest"
         ],
         "align": "left",
         "baseline": "middle",

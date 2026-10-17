@@ -1,446 +1,446 @@
 {
- "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
- "title": {
-  "text": "How the ten most-recorded bird orders rank in each season (2025)"
- },
- "width": 680,
- "height": 440,
- "padding": {
-  "left": 10,
-  "right": 10,
-  "top": 6,
-  "bottom": 6
- },
- "data": {
-  "url": "chart_season_treemap_data.csv",
-  "format": {
-   "type": "csv",
-   "parse": {
-    "value": "number"
-   }
-  }
- },
- "transform": [
-  {
-   "filter": {
-    "field": "order",
-    "oneOf": [
-     "Songbirds",
-     "Parrots",
-     "Waterfowl",
-     "Pelicans & Herons",
-     "Pigeons & Doves",
-     "Shorebirds & Gulls",
-     "Cormorants",
-     "Cranes & Rails",
-     "Kingfishers",
-     "Hawks & Eagles"
-    ]
-   }
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "How the ten most-recorded bird orders rank in each season (2025)"
   },
-  {
-   "window": [
-    {
-     "op": "rank",
-     "as": "rank"
-    }
-   ],
-   "sort": [
-    {
-     "field": "value",
-     "order": "descending"
-    }
-   ],
-   "groupby": [
-    "season"
-   ]
+  "width": 680,
+  "height": 440,
+  "padding": {
+    "left": 10,
+    "right": 10,
+    "top": 6,
+    "bottom": 70
   },
-  {
-   "calculate": "(datum.order === 'Kingfishers' || datum.order === 'Hawks & Eagles') ? datum.order : 'Other'",
-   "as": "focus"
-  }
- ],
- "encoding": {
-  "x": {
-   "field": "season",
-   "type": "ordinal",
-   "sort": [
-    "Summer",
-    "Autumn",
-    "Winter",
-    "Spring"
-   ],
-   "scale": {
-    "padding": 1.05
-   },
-   "axis": {
-    "orient": "top",
-    "title": null,
-    "ticks": false,
-    "domain": false,
-    "grid": true,
-    "gridColor": "#E4E1D2",
-    "gridWidth": 1,
-    "labelFontSize": 14,
-    "labelFontWeight": 600,
-    "labelColor": "#232622",
-    "labelPadding": 16,
-    "labelAngle": 0
-   }
+  "data": {
+    "url": "chart_season_treemap_data.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "value": "number"
+      }
+    }
   },
-  "y": {
-   "field": "rank",
-   "type": "quantitative",
-   "scale": {
-    "domain": [
-     0.5,
-     10.5
-    ],
-    "reverse": true
-   },
-   "axis": null
-  }
- },
- "layer": [
-  {
-   "transform": [
+  "transform": [
     {
-     "filter": "datum.focus === 'Other'"
-    }
-   ],
-   "mark": {
-    "type": "line",
-    "interpolate": "monotone",
-    "strokeWidth": 2,
-    "strokeCap": "round",
-    "strokeJoin": "round",
-    "color": "#CFCABA"
-   },
-   "encoding": {
-    "detail": {
-     "field": "order",
-     "type": "nominal"
-    }
-   }
-  },
-  {
-   "transform": [
-    {
-     "filter": "datum.focus === 'Other'"
-    }
-   ],
-   "mark": {
-    "type": "circle",
-    "size": 420,
-    "color": "#E9E5D9",
-    "opacity": 1,
-    "stroke": "#FFFFFF",
-    "strokeWidth": 2
-   },
-   "encoding": {
-    "tooltip": [
-     {
-      "field": "order",
-      "type": "nominal",
-      "title": "Order"
-     },
-     {
-      "field": "season",
-      "type": "nominal",
-      "title": "Season"
-     },
-     {
-      "field": "rank",
-      "type": "quantitative",
-      "title": "Rank among the top ten"
-     },
-     {
-      "field": "value",
-      "type": "quantitative",
-      "format": ",",
-      "title": "Count"
-     }
-    ]
-   }
-  },
-  {
-   "transform": [
-    {
-     "filter": "datum.focus !== 'Other'"
-    }
-   ],
-   "mark": {
-    "type": "line",
-    "interpolate": "monotone",
-    "strokeWidth": 3,
-    "strokeCap": "round",
-    "strokeJoin": "round"
-   },
-   "encoding": {
-    "detail": {
-     "field": "order",
-     "type": "nominal"
+      "filter": {
+        "field": "order",
+        "oneOf": [
+          "Songbirds",
+          "Parrots",
+          "Waterfowl",
+          "Pelicans & Herons",
+          "Pigeons & Doves",
+          "Shorebirds & Gulls",
+          "Cormorants",
+          "Cranes & Rails",
+          "Kingfishers",
+          "Hawks & Eagles"
+        ]
+      }
     },
-    "color": {
-     "field": "order",
-     "type": "nominal",
-     "scale": {
-      "domain": [
-       "Kingfishers",
-       "Hawks & Eagles"
-      ],
-      "range": [
-       "#8A3B24",
-       "#1F6FC0"
-      ]
-     },
-     "legend": null
-    }
-   }
-  },
-  {
-   "transform": [
     {
-     "filter": "datum.focus !== 'Other'"
-    }
-   ],
-   "mark": {
-    "type": "circle",
-    "size": 520,
-    "opacity": 1,
-    "stroke": "#FFFFFF",
-    "strokeWidth": 2
-   },
-   "encoding": {
-    "tooltip": [
-     {
-      "field": "order",
-      "type": "nominal",
-      "title": "Order"
-     },
-     {
-      "field": "season",
-      "type": "nominal",
-      "title": "Season"
-     },
-     {
-      "field": "rank",
-      "type": "quantitative",
-      "title": "Rank among the top ten"
-     },
-     {
-      "field": "value",
-      "type": "quantitative",
-      "format": ",",
-      "title": "Count"
-     }
-    ],
-    "color": {
-     "field": "order",
-     "type": "nominal",
-     "scale": {
-      "domain": [
-       "Kingfishers",
-       "Hawks & Eagles"
+      "window": [
+        {
+          "op": "rank",
+          "as": "rank"
+        }
       ],
-      "range": [
-       "#8A3B24",
-       "#1F6FC0"
+      "sort": [
+        {
+          "field": "value",
+          "order": "descending"
+        }
+      ],
+      "groupby": [
+        "season"
       ]
-     },
-     "legend": null
-    }
-   }
-  },
-  {
-   "mark": {
-    "type": "text",
-    "fontSize": 11,
-    "fontWeight": 600,
-    "align": "center",
-    "baseline": "middle"
-   },
-   "encoding": {
-    "text": {
-     "field": "rank",
-     "type": "quantitative"
     },
-    "color": {
-     "condition": {
-      "test": "datum.focus === 'Other'",
-      "value": "#383B35"
-     },
-     "value": "#FFFFFF"
-    }
-   }
-  },
-  {
-   "transform": [
     {
-     "filter": "datum.season === 'Summer' && datum.focus === 'Other'"
+      "calculate": "(datum.order === 'Kingfishers' || datum.order === 'Hawks & Eagles') ? datum.order : 'Other'",
+      "as": "focus"
     }
-   ],
-   "mark": {
-    "type": "text",
-    "align": "right",
-    "baseline": "middle",
-    "dx": -20,
-    "fontSize": 13,
-    "fontWeight": 400,
-    "color": "#383B35"
-   },
-   "encoding": {
-    "text": {
-     "field": "order",
-     "type": "nominal"
-    }
-   }
-  },
-  {
-   "transform": [
-    {
-     "filter": "datum.season === 'Summer' && datum.focus !== 'Other'"
-    }
-   ],
-   "mark": {
-    "type": "text",
-    "align": "right",
-    "baseline": "middle",
-    "dx": -20,
-    "fontSize": 13,
-    "fontWeight": 600
-   },
-   "encoding": {
-    "text": {
-     "field": "order",
-     "type": "nominal"
-    },
-    "color": {
-     "field": "order",
-     "type": "nominal",
-     "scale": {
-      "domain": [
-       "Kingfishers",
-       "Hawks & Eagles"
-      ],
-      "range": [
-       "#8A3B24",
-       "#1F6FC0"
-      ]
-     },
-     "legend": null
-    }
-   }
-  },
-  {
-   "transform": [
-    {
-     "filter": "datum.season === 'Spring' && datum.focus === 'Other'"
-    }
-   ],
-   "mark": {
-    "type": "text",
-    "align": "left",
-    "baseline": "middle",
-    "dx": 20,
-    "fontSize": 13,
-    "fontWeight": 400,
-    "color": "#383B35"
-   },
-   "encoding": {
-    "text": {
-     "field": "order",
-     "type": "nominal"
-    }
-   }
-  },
-  {
-   "transform": [
-    {
-     "filter": "datum.season === 'Spring' && datum.focus !== 'Other'"
-    }
-   ],
-   "mark": {
-    "type": "text",
-    "align": "left",
-    "baseline": "middle",
-    "dx": 20,
-    "fontSize": 13,
-    "fontWeight": 600
-   },
-   "encoding": {
-    "text": {
-     "field": "order",
-     "type": "nominal"
-    },
-    "color": {
-     "field": "order",
-     "type": "nominal",
-     "scale": {
-      "domain": [
-       "Kingfishers",
-       "Hawks & Eagles"
-      ],
-      "range": [
-       "#8A3B24",
-       "#1F6FC0"
-      ]
-     },
-     "legend": null
-    }
-   }
-  },
-  {
-   "data": {
-    "values": [
-     {
-      "a": 0
-     }
-    ]
-   },
-   "mark": {
-    "type": "text",
-    "text": "Kingfishers: last in autumn and winter, 7th in spring",
-    "align": "center",
-    "baseline": "middle",
-    "fontSize": 12,
-    "fontWeight": 600,
-    "color": "#8A3B24"
-   },
-   "encoding": {
+  ],
+  "encoding": {
     "x": {
-     "value": 370.00000000000006
+      "field": "season",
+      "type": "ordinal",
+      "sort": [
+        "Summer",
+        "Autumn",
+        "Winter",
+        "Spring"
+      ],
+      "scale": {
+        "padding": 1.05
+      },
+      "axis": {
+        "orient": "top",
+        "title": null,
+        "ticks": false,
+        "domain": false,
+        "grid": true,
+        "gridColor": "#E4E1D2",
+        "gridWidth": 1,
+        "labelFontSize": 14,
+        "labelFontWeight": 600,
+        "labelColor": "#232622",
+        "labelPadding": 16,
+        "labelAngle": 0
+      }
     },
     "y": {
-     "value": 397
+      "field": "rank",
+      "type": "quantitative",
+      "scale": {
+        "domain": [
+          0.5,
+          10.5
+        ],
+        "reverse": true
+      },
+      "axis": null
     }
-   }
   },
-  {
-   "data": {
-    "values": [
-     {
-      "a": 0
-     }
-    ]
-   },
-   "mark": {
-    "type": "text",
-    "text": "Hawks & Eagles peak at 6th in winter",
-    "align": "center",
-    "baseline": "middle",
-    "fontSize": 12,
-    "fontWeight": 600,
-    "color": "#1F6FC0"
-   },
-   "encoding": {
-    "x": {
-     "value": 406.66666666666674
+  "layer": [
+    {
+      "transform": [
+        {
+          "filter": "datum.focus === 'Other'"
+        }
+      ],
+      "mark": {
+        "type": "line",
+        "interpolate": "monotone",
+        "strokeWidth": 2,
+        "strokeCap": "round",
+        "strokeJoin": "round",
+        "color": "#CFCABA"
+      },
+      "encoding": {
+        "detail": {
+          "field": "order",
+          "type": "nominal"
+        }
+      }
     },
-    "y": {
-     "value": 264
+    {
+      "transform": [
+        {
+          "filter": "datum.focus === 'Other'"
+        }
+      ],
+      "mark": {
+        "type": "circle",
+        "size": 420,
+        "color": "#E9E5D9",
+        "opacity": 1,
+        "stroke": "#FFFFFF",
+        "strokeWidth": 2
+      },
+      "encoding": {
+        "tooltip": [
+          {
+            "field": "order",
+            "type": "nominal",
+            "title": "Order"
+          },
+          {
+            "field": "season",
+            "type": "nominal",
+            "title": "Season"
+          },
+          {
+            "field": "rank",
+            "type": "quantitative",
+            "title": "Rank among the top ten"
+          },
+          {
+            "field": "value",
+            "type": "quantitative",
+            "format": ",",
+            "title": "Count"
+          }
+        ]
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.focus !== 'Other'"
+        }
+      ],
+      "mark": {
+        "type": "line",
+        "interpolate": "monotone",
+        "strokeWidth": 3,
+        "strokeCap": "round",
+        "strokeJoin": "round"
+      },
+      "encoding": {
+        "detail": {
+          "field": "order",
+          "type": "nominal"
+        },
+        "color": {
+          "field": "order",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Kingfishers",
+              "Hawks & Eagles"
+            ],
+            "range": [
+              "#8A3B24",
+              "#1F6FC0"
+            ]
+          },
+          "legend": null
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.focus !== 'Other'"
+        }
+      ],
+      "mark": {
+        "type": "circle",
+        "size": 520,
+        "opacity": 1,
+        "stroke": "#FFFFFF",
+        "strokeWidth": 2
+      },
+      "encoding": {
+        "tooltip": [
+          {
+            "field": "order",
+            "type": "nominal",
+            "title": "Order"
+          },
+          {
+            "field": "season",
+            "type": "nominal",
+            "title": "Season"
+          },
+          {
+            "field": "rank",
+            "type": "quantitative",
+            "title": "Rank among the top ten"
+          },
+          {
+            "field": "value",
+            "type": "quantitative",
+            "format": ",",
+            "title": "Count"
+          }
+        ],
+        "color": {
+          "field": "order",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Kingfishers",
+              "Hawks & Eagles"
+            ],
+            "range": [
+              "#8A3B24",
+              "#1F6FC0"
+            ]
+          },
+          "legend": null
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "fontSize": 11,
+        "fontWeight": 600,
+        "align": "center",
+        "baseline": "middle"
+      },
+      "encoding": {
+        "text": {
+          "field": "rank",
+          "type": "quantitative"
+        },
+        "color": {
+          "condition": {
+            "test": "datum.focus === 'Other'",
+            "value": "#383B35"
+          },
+          "value": "#FFFFFF"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.season === 'Summer' && datum.focus === 'Other'"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "baseline": "middle",
+        "dx": -20,
+        "fontSize": 13,
+        "fontWeight": 400,
+        "color": "#383B35"
+      },
+      "encoding": {
+        "text": {
+          "field": "order",
+          "type": "nominal"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.season === 'Summer' && datum.focus !== 'Other'"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "baseline": "middle",
+        "dx": -20,
+        "fontSize": 13,
+        "fontWeight": 600
+      },
+      "encoding": {
+        "text": {
+          "field": "order",
+          "type": "nominal"
+        },
+        "color": {
+          "field": "order",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Kingfishers",
+              "Hawks & Eagles"
+            ],
+            "range": [
+              "#8A3B24",
+              "#1F6FC0"
+            ]
+          },
+          "legend": null
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.season === 'Spring' && datum.focus === 'Other'"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "dx": 20,
+        "fontSize": 13,
+        "fontWeight": 400,
+        "color": "#383B35"
+      },
+      "encoding": {
+        "text": {
+          "field": "order",
+          "type": "nominal"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.season === 'Spring' && datum.focus !== 'Other'"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "dx": 20,
+        "fontSize": 13,
+        "fontWeight": 600
+      },
+      "encoding": {
+        "text": {
+          "field": "order",
+          "type": "nominal"
+        },
+        "color": {
+          "field": "order",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Kingfishers",
+              "Hawks & Eagles"
+            ],
+            "range": [
+              "#8A3B24",
+              "#1F6FC0"
+            ]
+          },
+          "legend": null
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "a": 0
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "text": "Kingfishers: last in autumn and winter, 7th in spring",
+        "align": "center",
+        "baseline": "middle",
+        "fontSize": 12,
+        "fontWeight": 600,
+        "color": "#8A3B24"
+      },
+      "encoding": {
+        "x": {
+          "value": 340
+        },
+        "y": {
+          "value": 452
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "a": 0
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "text": "Hawks & Eagles peak at 6th in winter",
+        "align": "center",
+        "baseline": "middle",
+        "fontSize": 12,
+        "fontWeight": 600,
+        "color": "#1F6FC0"
+      },
+      "encoding": {
+        "x": {
+          "value": 406.7
+        },
+        "y": {
+          "value": 220
+        }
+      }
     }
-   }
-  }
- ]
+  ]
 }

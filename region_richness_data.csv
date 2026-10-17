@@ -1,10 +1,10 @@
-region,richness,n_records
-Wheatbelt,162,11153
-Kimberley,143,917
-Great Southern,133,6309
-South West,128,2595
-Goldfields-Esperance,126,1142
-Peel,120,1680
-Mid West,108,540
-Gascoyne,80,265
-Pilbara,41,88
+region,richness,n_records,std_richness
+Wheatbelt,162,11153,92
+Kimberley,143,917,146
+Great Southern,133,6309,86
+South West,128,2595,102
+Goldfields-Esperance,126,1142,122
+Peel,120,1680,106
+Mid West,108,540,125
+Gascoyne,80,265,110
+Pilbara,41,88,73
