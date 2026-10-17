@@ -1,10 +1,18 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": "Where the birds were counted (Jan\u2013Dec 2025)",
-  "width": 820,
+  "width": 760,
   "height": 500,
   "projection": {
-    "type": "mercator"
+    "type": "conicEqualArea",
+    "parallels": [
+      -20,
+      -34
+    ],
+    "rotate": [
+      -122,
+      0
+    ]
   },
   "layer": [
     {
@@ -147,13 +155,112 @@
           {
             "lat": -23,
             "lon": 113.3,
-            "lat2": -23,
-            "lon2": 129.1
+            "i": 0
+          },
+          {
+            "lat": -23,
+            "lon": 114.09,
+            "i": 1
+          },
+          {
+            "lat": -23,
+            "lon": 114.88,
+            "i": 2
+          },
+          {
+            "lat": -23,
+            "lon": 115.67,
+            "i": 3
+          },
+          {
+            "lat": -23,
+            "lon": 116.46,
+            "i": 4
+          },
+          {
+            "lat": -23,
+            "lon": 117.25,
+            "i": 5
+          },
+          {
+            "lat": -23,
+            "lon": 118.04,
+            "i": 6
+          },
+          {
+            "lat": -23,
+            "lon": 118.83,
+            "i": 7
+          },
+          {
+            "lat": -23,
+            "lon": 119.62,
+            "i": 8
+          },
+          {
+            "lat": -23,
+            "lon": 120.41,
+            "i": 9
+          },
+          {
+            "lat": -23,
+            "lon": 121.2,
+            "i": 10
+          },
+          {
+            "lat": -23,
+            "lon": 121.99,
+            "i": 11
+          },
+          {
+            "lat": -23,
+            "lon": 122.78,
+            "i": 12
+          },
+          {
+            "lat": -23,
+            "lon": 123.57,
+            "i": 13
+          },
+          {
+            "lat": -23,
+            "lon": 124.36,
+            "i": 14
+          },
+          {
+            "lat": -23,
+            "lon": 125.15,
+            "i": 15
+          },
+          {
+            "lat": -23,
+            "lon": 125.94,
+            "i": 16
+          },
+          {
+            "lat": -23,
+            "lon": 126.73,
+            "i": 17
+          },
+          {
+            "lat": -23,
+            "lon": 127.52,
+            "i": 18
+          },
+          {
+            "lat": -23,
+            "lon": 128.31,
+            "i": 19
+          },
+          {
+            "lat": -23,
+            "lon": 129.1,
+            "i": 20
           }
         ]
       },
       "mark": {
-        "type": "rule",
+        "type": "line",
         "color": "#6B6A5C",
         "strokeWidth": 1,
         "strokeDash": [
@@ -170,11 +277,9 @@
           "field": "lat",
           "type": "quantitative"
         },
-        "longitude2": {
-          "field": "lon2"
-        },
-        "latitude2": {
-          "field": "lat2"
+        "order": {
+          "field": "i",
+          "type": "quantitative"
         }
       }
     },

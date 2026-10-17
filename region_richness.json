@@ -1,10 +1,18 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": "Species Richness Across Regions",
-  "width": 820,
+  "width": 760,
   "height": 500,
   "projection": {
-    "type": "mercator"
+    "type": "conicEqualArea",
+    "parallels": [
+      -20,
+      -34
+    ],
+    "rotate": [
+      -122,
+      0
+    ]
   },
   "config": {
     "view": {
@@ -49,7 +57,7 @@
             "scheme": "yellowgreenblue"
           },
           "legend": {
-            "title": "Species per 1,000 records",
+            "title": "Species per 1,000 records (standardised)",
             "orient": "bottom",
             "direction": "horizontal",
             "gradientLength": 320,
