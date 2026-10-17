@@ -49,7 +49,7 @@
             "scheme": "yellowgreenblue"
           },
           "legend": {
-            "title": "Species per 1,000 records (standardised)",
+            "title": "Species per 1,000 records",
             "orient": "bottom",
             "direction": "horizontal",
             "gradientLength": 320,
