@@ -161,6 +161,7 @@
     }
     /* Charts sized to their container (the donut) need the embed wrapper to fill it */
     #chartDonut .vega-embed { width: 100%; }
+    .spec-link { display: block; text-align: center; font-size: 12px; margin-top: 6px; color: var(--muted); text-decoration: underline; text-underline-offset: 2px; }
     .vis-container .vega-bindings {
       font-size: 13px;
       color: var(--muted);
@@ -236,6 +237,10 @@
     .footer .photo-credit { max-width: 46em; margin: 8px auto 0; text-align: left; font-size: 12px; color: var(--muted); }
 
 
+    @media (max-width: 1000px) {
+      .page { padding: 56px 28px 48px; }
+    }
+
     /* ---------- Small screens ---------- */
     @media (max-width: 700px) {
       body { font-size: 16px; }
@@ -269,14 +274,14 @@
           <div class="description">
             <span class="eyebrow">01 &middot; Composition</span>
             <h2>What was seen</h2>
-            <p>A breakdown of the bird orders among the six species featured later in the story, from the largest group to the smallest.</p>
+            <p>A breakdown of the taxonomic orders (the Latin group names, such as Psittaciformes for parrots) among the six species featured later in the story, from the largest to the smallest.</p>
           </div>
         </div>
       </div>
       <div class="pure-g">
         <div class="pure-u-1-1">
           <div id="chartDonut" class="vis-container"></div>
-          <p class="caption">Reading clockwise from the top, parrots (Psittaciformes) make up almost half of the sightings, led by the Red-capped Parrot, followed by songbirds (Passeriformes) at about 30%, bee-eaters (Coraciiformes) at about 18% and frogmouths (Caprimulgiformes) at 3%. The ring is dominated by two groups, which together account for roughly four in five sightings. These are the six species featured in section 05, logged between January and December 2025.</p>
+          <p class="caption">Reading clockwise from the top, Psittaciformes (parrots) make up almost half of the sightings, led by the Red-capped Parrot, followed by Passeriformes (songbirds) at about 30%, Coraciiformes (bee-eaters) at about 18% and Caprimulgiformes (frogmouths) at 3%. Together the first two orders account for roughly four in five sightings. These are the six species featured in section 05, logged between January and December 2025.</p>
         </div>
       </div>
     </div>
@@ -319,14 +324,14 @@
           <div class="description">
             <span class="eyebrow">03 &middot; Variety</span>
             <h2>Where the variety lives</h2>
-            <p>Volume isn't the same as variety. Using real WA Regional Development Commission boundaries, darker blue means more distinct species in that region once the number of records is evened out (Perth metro is excluded).</p>
+            <p>Volume isn't the same as variety. Using real WA Regional Development Commission boundaries, darker blue means more distinct species in that region once the number of records is evened out, so that busy regions don&rsquo;t win just by being watched more (Perth metro is excluded).</p>
           </div>
         </div>
       </div>
       <div class="pure-g">
         <div class="pure-u-1-1">
           <div id="mapC" class="vis-container"></div>
-          <p class="caption">Once the number of records is evened out, the Kimberley is the most species-rich region, at about 146 species per 1,000 records. The Wheatbelt has the longest raw species list but falls to 92 because it is by far the most watched region, and the Pilbara is lowest at 73. The values are estimated from how species counts rise with the number of records across the nine regions, so small gaps between the middle-ranked regions should not be over-read.</p>
+          <p class="caption">Allowing for how much each region was watched, the Kimberley is the most species-rich region, at about 146 species per 1,000 records. The Wheatbelt has the longest raw species list but falls to 92 because it is by far the most watched region, and the Pilbara is lowest at 73. This evens out the fact that busy regions log more species simply because more people are looking, so small gaps between the middle-ranked regions should not be over-read.</p>
         </div>
       </div>
     </div>
@@ -424,7 +429,7 @@
           <div class="description">
             <span class="eyebrow">06 &middot; Change</span>
             <h2>A decade of change: 2015 vs. 2025</h2>
-            <p>Raw counts and effort-corrected reporting rates don't always move together. Comparing both for the 18 most-recorded species shows who's thriving and who's slipping.</p>
+            <p>Comparing 2015 with 2025 for the 18 most-recorded species shows who&rsquo;s thriving and who&rsquo;s slipping.</p>
             <p class="note"><b>Note:</b> Western Gerygone sightings rose 143% over the decade; Magpie-lark fell 51%.</p>
           </div>
         </div>
@@ -453,9 +458,26 @@
         </div>
         <div class="footer-block">
           <h3>AI Acknowledgement</h3>
-          <p>I used Claude to clean the data from the sources above and to create data that is useable in Vega-Lite. I made sure to crosscheck the data that was output to ensure that no synthetic data was used in the process.</p>
+          <p>I used Claude to clean the data from the sources above, to create data that is useable in Vega-Lite, and to help create the charts. I made sure to crosscheck the data that was output to ensure that no synthetic data was used in the process.</p>
         </div>
-        <p class="photo-credit">Photos via Wikimedia Commons; see each file page for photographer credit and licence.</p>
+        <div class="footer-block">
+          <h3>Photo credits</h3>
+          <ul class="sources">
+            <!-- PHOTO CREDITS: add one line per photo (photographer, licence, link). -->
+            <li>Western Rosella: photo by <a href="https://commons.wikimedia.org/wiki/User:Paulweberphoto" target="_blank" rel="noopener">Paulweberphoto</a>; species page <a href="https://en.wikipedia.org/wiki/Western_rosella" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Western_rosella</a></li>
+            <li>Red-capped Parrot: photo by <a href="https://commons.wikimedia.org/wiki/User:Paulweberphoto" target="_blank" rel="noopener">Paulweberphoto</a>; species page <a href="https://en.wikipedia.org/wiki/Red-capped_parrot" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Red-capped_parrot</a></li>
+            <li>Splendid Fairywren: photo by <a href="https://commons.wikimedia.org/wiki/User:JJ_Harrison" target="_blank" rel="noopener">JJ Harrison</a>; species page <a href="https://en.wikipedia.org/wiki/Splendid_fairywren" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Splendid_fairywren</a></li>
+            <li>Rainbow Bee-eater: photo by <a href="https://commons.wikimedia.org/wiki/User:JJ_Harrison" target="_blank" rel="noopener">JJ Harrison</a>; species page <a href="https://en.wikipedia.org/wiki/Rainbow_bee-eater" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Rainbow_bee-eater</a></li>
+            <li>Tawny Frogmouth: photo by <a href="https://commons.wikimedia.org/wiki/User:JJ_Harrison" target="_blank" rel="noopener">JJ Harrison</a>; species page <a href="https://en.wikipedia.org/wiki/Tawny_frogmouth" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Tawny_frogmouth</a></li>
+            <li>Regent Parrot: photo by <a href="https://commons.wikimedia.org/wiki/User:Peripitus" target="_blank" rel="noopener">Peripitus</a>; species page <a href="https://en.wikipedia.org/wiki/Regent_parrot" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Regent_parrot</a></li>
+          </ul>
+        </div>
+        <div class="footer-block">
+          <h3>Map boundaries</h3>
+          <ul class="sources">
+            <li>Western Australia outline (wa_topo.json): <a href="https://catalogue.data.wa.gov.au/dataset/state-border" target="_blank" rel="noopener">https://catalogue.data.wa.gov.au/dataset/state-border</a> (WA state border, data.wa.gov.au), converted to TopoJSON with <a href="https://mapshaper.org/" target="_blank" rel="noopener">https://mapshaper.org/</a></li>
+          </ul>
+        </div>
       </div>
     </footer>
 
@@ -574,7 +596,16 @@
         ["#chartRidge",          "chart_ridgeline.json"],
         ["#speciesDistribution", "species_distribution.json"],
         ["#chartParcoord",       "chart_parcoord.json"]
-      ].forEach(([id, url]) => embedSpec(id, url));
+      ].forEach(([id, url]) => {
+        embedSpec(id, url);
+        const host = document.querySelector(id);
+        if (host && !host.nextElementSibling?.classList.contains("spec-link")) {
+          const a = document.createElement("a");
+          a.href = url; a.target = "_blank"; a.rel = "noopener";
+          a.className = "spec-link"; a.textContent = "View chart specification (JSON)";
+          host.insertAdjacentElement("afterend", a);
+        }
+      });
     });
   </script>
 </body>

@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": "Which season dominates each area",
+  "title": "Which season dominates each area (six species)",
   "width": 820,
   "height": 500,
   "projection": {

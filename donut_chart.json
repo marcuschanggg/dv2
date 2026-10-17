@@ -20,7 +20,7 @@
         "color": {
           "field": "Order (dwc:order)",
           "type": "nominal",
-          "title": "Order",
+          "title": "Taxonomic order",
           "legend": {
             "orient": "bottom",
             "direction": "horizontal",
@@ -30,7 +30,7 @@
             "symbolSize": 220,
             "columnPadding": 24,
             "columns": 2,
-            "labelExpr": "{'Psittaciformes':'Parrots (Psittaciformes)','Passeriformes':'Songbirds (Passeriformes)','Coraciiformes':'Bee-eaters (Coraciiformes)','Caprimulgiformes':'Frogmouths (Caprimulgiformes)'}[datum.label]"
+            "labelExpr": "{'Psittaciformes':'Psittaciformes (parrots)','Passeriformes':'Passeriformes (songbirds)','Coraciiformes':'Coraciiformes (bee-eaters)','Caprimulgiformes':'Caprimulgiformes (frogmouths)'}[datum.label]"
           },
           "sort": {
             "op": "count",

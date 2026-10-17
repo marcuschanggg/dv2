@@ -1,7 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
-    "text": "Records per day across 2025, and the average for each weekday"
+    "text": "Records per day across 2025 (six species), and the average for each weekday"
   },
   "data": {
     "url": "chart_calendar_heatmap_data.csv",
