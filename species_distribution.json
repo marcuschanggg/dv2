@@ -18,10 +18,9 @@
     ],
     "header": {
       "labelFontSize": 12,
-      "labelFontWeight": "bold",
+      "labelFontWeight": "normal",
       "labelPadding": 4,
-      "labelExpr": "datum.value + '\\n' + {'Western Rosella': 'none north of 30\\u00b0S', 'Red-capped Parrot': 'none north of 30\\u00b0S', 'Splendid Fairywren': '3% north of 30\\u00b0S', 'Rainbow Bee-eater': '31% north of 30\\u00b0S', 'Tawny Frogmouth': '12% north of 30\\u00b0S', 'Regent Parrot': '1% north of 30\\u00b0S'}[datum.value]",
-      "labelLineHeight": 15
+      "labelExpr": "{'Western Rosella': 'none north of 30\u00b0S', 'Red-capped Parrot': 'none north of 30\u00b0S', 'Splendid Fairywren': '3% north of 30\u00b0S', 'Rainbow Bee-eater': '31% north of 30\u00b0S', 'Tawny Frogmouth': '12% north of 30\u00b0S', 'Regent Parrot': '1% north of 30\u00b0S'}[datum.value]"
     }
   },
   "columns": 3,
@@ -74,9 +73,35 @@
             "field": "species",
             "type": "nominal",
             "scale": {
-              "scheme": "dark2"
+              "domain": [
+                "Western Rosella",
+                "Red-capped Parrot",
+                "Splendid Fairywren",
+                "Rainbow Bee-eater",
+                "Tawny Frogmouth",
+                "Regent Parrot"
+              ],
+              "range": [
+                "#1B9E77",
+                "#D95F02",
+                "#7570B3",
+                "#E7298A",
+                "#66A61E",
+                "#CC8F00"
+              ]
             },
-            "legend": null
+            "legend": {
+              "orient": "bottom",
+              "direction": "horizontal",
+              "title": null,
+              "columns": 3,
+              "labelFontSize": 12,
+              "symbolSize": 160,
+              "columnPadding": 22,
+              "rowPadding": 6,
+              "offset": 14,
+              "symbolType": "circle"
+            }
           }
         }
       },

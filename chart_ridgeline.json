@@ -45,18 +45,43 @@
       "field": "common",
       "type": "nominal",
       "scale": {
-        "scheme": "dark2"
+        "domain": [
+          "Western Rosella",
+          "Red-capped Parrot",
+          "Splendid Fairywren",
+          "Rainbow Bee-eater",
+          "Tawny Frogmouth",
+          "Regent Parrot"
+        ],
+        "range": [
+          "#1B9E77",
+          "#D95F02",
+          "#7570B3",
+          "#E7298A",
+          "#66A61E",
+          "#CC8F00"
+        ]
       },
-      "legend": null
+      "legend": {
+        "orient": "bottom",
+        "direction": "horizontal",
+        "title": null,
+        "columns": 3,
+        "labelFontSize": 12,
+        "symbolSize": 160,
+        "columnPadding": 22,
+        "rowPadding": 6,
+        "offset": 14,
+        "symbolType": "square"
+      }
     },
     "row": {
       "field": "common",
       "type": "nominal",
       "title": null,
       "header": {
-        "labelAngle": 0,
-        "labelAlign": "left",
-        "labelFontSize": 12
+        "labels": false,
+        "title": null
       },
       "sort": {
         "field": "n",
@@ -79,8 +104,8 @@
     }
   },
   "padding": {
-    "left": 0,
-    "right": 112,
+    "left": 125,
+    "right": 125,
     "top": 6,
     "bottom": 6
   }

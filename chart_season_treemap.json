@@ -10,8 +10,10 @@
   },
   "width": 760,
   "height": 460,
-  "padding": 2.5,
-  "autosize": "none",
+  "padding": 5,
+  "autosize": {
+    "type": "pad"
+  },
   "signals": [
     {
       "name": "layout",
@@ -78,7 +80,7 @@
             }
           ],
           "paddingInner": 1,
-          "paddingTop": 22,
+          "paddingTop": 2,
           "paddingRight": 2,
           "paddingBottom": 2,
           "paddingLeft": 2
@@ -223,53 +225,6 @@
         "hover": {
           "fillOpacity": {
             "value": 1.0
-          }
-        }
-      }
-    },
-    {
-      "type": "text",
-      "from": {
-        "data": "season_nodes"
-      },
-      "interactive": false,
-      "encode": {
-        "enter": {
-          "font": {
-            "value": "Helvetica Neue, Arial, sans-serif"
-          },
-          "align": {
-            "value": "left"
-          },
-          "baseline": {
-            "value": "top"
-          },
-          "fontSize": {
-            "value": 13
-          },
-          "fontWeight": {
-            "value": "bold"
-          },
-          "dx": {
-            "value": 4
-          },
-          "dy": {
-            "value": 4
-          }
-        },
-        "update": {
-          "x": {
-            "field": "x0"
-          },
-          "y": {
-            "field": "y0"
-          },
-          "text": {
-            "field": "key"
-          },
-          "fill": {
-            "scale": "color",
-            "field": "key"
           }
         }
       }
@@ -494,6 +449,20 @@
           ]
         }
       }
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Season",
+      "orient": "bottom",
+      "direction": "horizontal",
+      "symbolType": "square",
+      "symbolSize": 180,
+      "titleFontSize": 12,
+      "labelFontSize": 12,
+      "offset": 10,
+      "columnPadding": 20
     }
   ]
 }
