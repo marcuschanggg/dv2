@@ -28,7 +28,11 @@
       "title": null,
       "sort": "ascending",
       "axis": {
-        "labelExpr": "['','Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][datum.value]"
+        "labelExpr": "['','Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][datum.value]",
+        "labelAngle": 0,
+        "labelAlign": "center",
+        "labelOverlap": false,
+        "labelPadding": 4
       }
     },
     "y": {
