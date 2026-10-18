@@ -284,5 +284,12 @@
     "view": {
       "stroke": null
     }
+  },
+  "spacing": 20,
+  "padding": {
+    "left": 50,
+    "right": 50,
+    "top": 5,
+    "bottom": 5
   }
 }
