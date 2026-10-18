@@ -83,5 +83,11 @@
         }
       }
     }
-  ]
+  ],
+  "padding": {
+    "left": 65,
+    "right": 65,
+    "top": 5,
+    "bottom": 5
+  }
 }

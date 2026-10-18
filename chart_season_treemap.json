@@ -2,17 +2,22 @@
   "$schema": "https://vega.github.io/schema/vega/v6.json",
   "title": {
     "text": "WA bird sightings by season and taxonomic order (2025)",
-    "anchor": "start",
-    "offset": 10,
+    "anchor": "middle",
     "fontSize": 14,
     "fontWeight": "bold",
-    "font": "Helvetica Neue, Arial, sans-serif"
+    "font": "Helvetica Neue, Arial, sans-serif",
+    "offset": 12
   },
-  "width": 760,
-  "height": 460,
-  "padding": 5,
+  "width": 660,
+  "height": 420,
+  "padding": {
+    "left": 85,
+    "right": 85,
+    "top": 38,
+    "bottom": 58
+  },
   "autosize": {
-    "type": "pad"
+    "type": "none"
   },
   "signals": [
     {
@@ -29,13 +34,7 @@
     },
     {
       "name": "aspectRatio",
-      "value": 1.6,
-      "bind": {
-        "input": "range",
-        "min": 1,
-        "max": 5,
-        "step": 0.1
-      }
+      "value": 1.6
     }
   ],
   "data": [
