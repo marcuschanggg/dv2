@@ -1,295 +1,299 @@
 {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": "Where six WA species were recorded (2025)",
-  "data": {
-    "url": "species_distribution_data.csv"
+ "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+ "title": {
+  "text": "Where each of six WA species was recorded (2025)",
+  "subtitle": {
+   "expr": "species_pick + ': ' + {'Western Rosella': 'none of its records are north of 30\u00b0S', 'Red-capped Parrot': 'none of its records are north of 30\u00b0S', 'Splendid Fairywren': '3% of its records are north of 30\u00b0S', 'Rainbow Bee-eater': '31% of its records are north of 30\u00b0S', 'Tawny Frogmouth': '12% of its records are north of 30\u00b0S', 'Regent Parrot': '1% of its records are north of 30\u00b0S'}[species_pick]"
   },
-  "facet": {
-    "field": "species",
-    "type": "nominal",
-    "title": null,
-    "sort": [
-      "Western Rosella",
-      "Red-capped Parrot",
-      "Splendid Fairywren",
-      "Rainbow Bee-eater",
-      "Tawny Frogmouth",
-      "Regent Parrot"
+  "subtitleFontSize": 13,
+  "subtitlePadding": 6
+ },
+ "width": 760,
+ "height": 520,
+ "padding": {
+  "left": 35,
+  "right": 35,
+  "top": 5,
+  "bottom": 5
+ },
+ "projection": {
+  "type": "conicEqualArea",
+  "parallels": [
+   -20,
+   -34
+  ],
+  "rotate": [
+   -122,
+   0
+  ]
+ },
+ "params": [
+  {
+   "name": "species_pick",
+   "value": "Western Rosella",
+   "bind": {
+    "input": "select",
+    "options": [
+     "Western Rosella",
+     "Red-capped Parrot",
+     "Splendid Fairywren",
+     "Rainbow Bee-eater",
+     "Tawny Frogmouth",
+     "Regent Parrot"
     ],
-    "header": {
-      "labelFontSize": 12,
-      "labelFontWeight": "normal",
-      "labelPadding": 4,
-      "labelExpr": "{'Western Rosella': 'none north of 30\u00b0S', 'Red-capped Parrot': 'none north of 30\u00b0S', 'Splendid Fairywren': '3% north of 30\u00b0S', 'Rainbow Bee-eater': '31% north of 30\u00b0S', 'Tawny Frogmouth': '12% north of 30\u00b0S', 'Regent Parrot': '1% north of 30\u00b0S'}[datum.value]"
-    }
-  },
-  "columns": 3,
-  "spec": {
-    "width": 230,
-    "height": 165,
-    "projection": {
-      "type": "conicEqualArea",
-      "parallels": [
-        -20,
-        -34
-      ],
-      "rotate": [
-        -122,
-        0
-      ]
-    },
-    "layer": [
-      {
-        "data": {
-          "url": "wa_topo.json",
-          "format": {
-            "type": "topojson",
-            "feature": "wa"
-          }
-        },
-        "mark": {
-          "type": "geoshape",
-          "fill": "#EBE6D4",
-          "stroke": "#8A3B24",
-          "strokeWidth": 0.5
-        }
-      },
-      {
-        "mark": {
-          "type": "circle",
-          "size": 18,
-          "opacity": 0.75
-        },
-        "encoding": {
-          "longitude": {
-            "field": "lon",
-            "type": "quantitative"
-          },
-          "latitude": {
-            "field": "lat",
-            "type": "quantitative"
-          },
-          "color": {
-            "field": "species",
-            "type": "nominal",
-            "scale": {
-              "domain": [
-                "Western Rosella",
-                "Red-capped Parrot",
-                "Splendid Fairywren",
-                "Rainbow Bee-eater",
-                "Tawny Frogmouth",
-                "Regent Parrot"
-              ],
-              "range": [
-                "#1B9E77",
-                "#D95F02",
-                "#7570B3",
-                "#E7298A",
-                "#66A61E",
-                "#CC8F00"
-              ]
-            },
-            "legend": {
-              "orient": "bottom",
-              "direction": "horizontal",
-              "title": null,
-              "columns": 3,
-              "labelFontSize": 12,
-              "symbolSize": 160,
-              "columnPadding": 22,
-              "rowPadding": 6,
-              "offset": 14,
-              "symbolType": "circle"
-            }
-          }
-        }
-      },
-      {
-        "data": {
-          "values": [
-            {
-              "lat": -30,
-              "lon": 113.2,
-              "i": 0
-            },
-            {
-              "lat": -30,
-              "lon": 114.0,
-              "i": 1
-            },
-            {
-              "lat": -30,
-              "lon": 114.8,
-              "i": 2
-            },
-            {
-              "lat": -30,
-              "lon": 115.6,
-              "i": 3
-            },
-            {
-              "lat": -30,
-              "lon": 116.4,
-              "i": 4
-            },
-            {
-              "lat": -30,
-              "lon": 117.2,
-              "i": 5
-            },
-            {
-              "lat": -30,
-              "lon": 118.0,
-              "i": 6
-            },
-            {
-              "lat": -30,
-              "lon": 118.8,
-              "i": 7
-            },
-            {
-              "lat": -30,
-              "lon": 119.6,
-              "i": 8
-            },
-            {
-              "lat": -30,
-              "lon": 120.4,
-              "i": 9
-            },
-            {
-              "lat": -30,
-              "lon": 121.2,
-              "i": 10
-            },
-            {
-              "lat": -30,
-              "lon": 122.0,
-              "i": 11
-            },
-            {
-              "lat": -30,
-              "lon": 122.8,
-              "i": 12
-            },
-            {
-              "lat": -30,
-              "lon": 123.6,
-              "i": 13
-            },
-            {
-              "lat": -30,
-              "lon": 124.4,
-              "i": 14
-            },
-            {
-              "lat": -30,
-              "lon": 125.2,
-              "i": 15
-            },
-            {
-              "lat": -30,
-              "lon": 126.0,
-              "i": 16
-            },
-            {
-              "lat": -30,
-              "lon": 126.8,
-              "i": 17
-            },
-            {
-              "lat": -30,
-              "lon": 127.6,
-              "i": 18
-            },
-            {
-              "lat": -30,
-              "lon": 128.4,
-              "i": 19
-            },
-            {
-              "lat": -30,
-              "lon": 129.2,
-              "i": 20
-            }
-          ]
-        },
-        "mark": {
-          "type": "line",
-          "color": "#6B6A5C",
-          "strokeWidth": 1,
-          "strokeDash": [
-            3,
-            3
-          ]
-        },
-        "encoding": {
-          "longitude": {
-            "field": "lon",
-            "type": "quantitative"
-          },
-          "latitude": {
-            "field": "lat",
-            "type": "quantitative"
-          },
-          "order": {
-            "field": "i",
-            "type": "quantitative"
-          }
-        }
-      },
-      {
-        "data": {
-          "values": [
-            {
-              "lat": -30,
-              "lon": 129.4,
-              "t": "30\u00b0S"
-            }
-          ]
-        },
-        "mark": {
-          "type": "text",
-          "align": "left",
-          "baseline": "middle",
-          "dx": 2,
-          "fontSize": 9,
-          "color": "#6B6A5C"
-        },
-        "encoding": {
-          "longitude": {
-            "field": "lon",
-            "type": "quantitative"
-          },
-          "latitude": {
-            "field": "lat",
-            "type": "quantitative"
-          },
-          "text": {
-            "field": "t",
-            "type": "nominal"
-          }
-        }
-      }
-    ]
-  },
-  "resolve": {
-    "scale": {
-      "x": "shared",
-      "y": "shared"
-    }
-  },
-  "config": {
-    "view": {
-      "stroke": null
-    }
-  },
-  "spacing": 20,
-  "padding": {
-    "left": 50,
-    "right": 50,
-    "top": 5,
-    "bottom": 5
+    "name": "Choose a bird: "
+   }
   }
+ ],
+ "layer": [
+  {
+   "data": {
+    "url": "wa_topo.json",
+    "format": {
+     "type": "topojson",
+     "feature": "wa"
+    }
+   },
+   "mark": {
+    "type": "geoshape",
+    "fill": "#EBE6D4",
+    "stroke": "#8A3B24",
+    "strokeWidth": 0.5
+   }
+  },
+  {
+   "data": {
+    "url": "species_distribution_data.csv",
+    "format": {
+     "type": "csv",
+     "parse": {
+      "lat": "number",
+      "lon": "number"
+     }
+    }
+   },
+   "transform": [
+    {
+     "filter": "datum.species === species_pick"
+    }
+   ],
+   "mark": {
+    "type": "circle",
+    "size": 40,
+    "opacity": 0.6
+   },
+   "encoding": {
+    "longitude": {
+     "field": "lon",
+     "type": "quantitative"
+    },
+    "latitude": {
+     "field": "lat",
+     "type": "quantitative"
+    },
+    "color": {
+     "field": "species",
+     "type": "nominal",
+     "scale": {
+      "domain": [
+       "Western Rosella",
+       "Red-capped Parrot",
+       "Splendid Fairywren",
+       "Rainbow Bee-eater",
+       "Tawny Frogmouth",
+       "Regent Parrot"
+      ],
+      "range": [
+       "#1B9E77",
+       "#D95F02",
+       "#7570B3",
+       "#E7298A",
+       "#66A61E",
+       "#CC8F00"
+      ]
+     },
+     "legend": null
+    },
+    "tooltip": [
+     {
+      "field": "species",
+      "type": "nominal",
+      "title": "Species"
+     }
+    ]
+   }
+  },
+  {
+   "data": {
+    "values": [
+     {
+      "lat": -30,
+      "lon": 113.2,
+      "i": 0
+     },
+     {
+      "lat": -30,
+      "lon": 114.0,
+      "i": 1
+     },
+     {
+      "lat": -30,
+      "lon": 114.8,
+      "i": 2
+     },
+     {
+      "lat": -30,
+      "lon": 115.6,
+      "i": 3
+     },
+     {
+      "lat": -30,
+      "lon": 116.4,
+      "i": 4
+     },
+     {
+      "lat": -30,
+      "lon": 117.2,
+      "i": 5
+     },
+     {
+      "lat": -30,
+      "lon": 118.0,
+      "i": 6
+     },
+     {
+      "lat": -30,
+      "lon": 118.8,
+      "i": 7
+     },
+     {
+      "lat": -30,
+      "lon": 119.6,
+      "i": 8
+     },
+     {
+      "lat": -30,
+      "lon": 120.4,
+      "i": 9
+     },
+     {
+      "lat": -30,
+      "lon": 121.2,
+      "i": 10
+     },
+     {
+      "lat": -30,
+      "lon": 122.0,
+      "i": 11
+     },
+     {
+      "lat": -30,
+      "lon": 122.8,
+      "i": 12
+     },
+     {
+      "lat": -30,
+      "lon": 123.6,
+      "i": 13
+     },
+     {
+      "lat": -30,
+      "lon": 124.4,
+      "i": 14
+     },
+     {
+      "lat": -30,
+      "lon": 125.2,
+      "i": 15
+     },
+     {
+      "lat": -30,
+      "lon": 126.0,
+      "i": 16
+     },
+     {
+      "lat": -30,
+      "lon": 126.8,
+      "i": 17
+     },
+     {
+      "lat": -30,
+      "lon": 127.6,
+      "i": 18
+     },
+     {
+      "lat": -30,
+      "lon": 128.4,
+      "i": 19
+     },
+     {
+      "lat": -30,
+      "lon": 129.2,
+      "i": 20
+     }
+    ]
+   },
+   "mark": {
+    "type": "line",
+    "color": "#6B6A5C",
+    "strokeWidth": 1,
+    "strokeDash": [
+     4,
+     4
+    ]
+   },
+   "encoding": {
+    "longitude": {
+     "field": "lon",
+     "type": "quantitative"
+    },
+    "latitude": {
+     "field": "lat",
+     "type": "quantitative"
+    },
+    "order": {
+     "field": "i",
+     "type": "quantitative"
+    }
+   }
+  },
+  {
+   "data": {
+    "values": [
+     {
+      "lat": -30,
+      "lon": 129.4,
+      "t": "30\u00b0S"
+     }
+    ]
+   },
+   "mark": {
+    "type": "text",
+    "align": "left",
+    "baseline": "middle",
+    "dx": 2,
+    "fontSize": 11,
+    "color": "#6B6A5C"
+   },
+   "encoding": {
+    "longitude": {
+     "field": "lon",
+     "type": "quantitative"
+    },
+    "latitude": {
+     "field": "lat",
+     "type": "quantitative"
+    },
+    "text": {
+     "field": "t",
+     "type": "nominal"
+    }
+   }
+  }
+ ],
+ "config": {
+  "view": {
+   "stroke": null
+  }
+ }
 }
