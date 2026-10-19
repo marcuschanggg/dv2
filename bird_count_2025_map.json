@@ -32,13 +32,21 @@
     },
     {
       "data": {
-        "url": "all bird map data 2025.csv"
+        "url": "bird_count_2025_cells.csv",
+        "format": {
+          "type": "csv",
+          "parse": {
+            "lat": "number",
+            "lon": "number",
+            "count": "number"
+          }
+        }
       },
       "mark": {
         "type": "circle",
-        "size": 8,
-        "opacity": 0.35,
-        "stroke": null
+        "opacity": 0.45,
+        "stroke": "#8A3B24",
+        "strokeWidth": 0.6
       },
       "encoding": {
         "longitude": {
@@ -49,9 +57,53 @@
           "field": "lat",
           "type": "quantitative"
         },
+        "size": {
+          "field": "count",
+          "type": "quantitative",
+          "scale": {
+            "type": "linear",
+            "domain": [
+              1,
+              8300
+            ],
+            "range": [
+              4,
+              2600
+            ]
+          },
+          "legend": {
+            "title": "Sightings per ~15 km cell",
+            "orient": "bottom-right",
+            "values": [
+              10,
+              100,
+              1000,
+              5000
+            ],
+            "symbolFillColor": "#C1440E",
+            "symbolOpacity": 0.45,
+            "symbolStrokeColor": "#8A3B24",
+            "titleFontSize": 12,
+            "labelFontSize": 12,
+            "offset": 6
+          }
+        },
+        "order": {
+          "field": "count",
+          "type": "quantitative",
+          "sort": "descending"
+        },
         "color": {
           "value": "#C1440E"
-        }
+        },
+        "tooltip": [
+          {
+            "field": "count",
+            "type": "quantitative",
+            "title": "Sightings in cell",
+            "format": ","
+          }
+        ]
       }
     },
     {
@@ -126,7 +178,7 @@
       "mark": {
         "type": "text",
         "text": [
-          "Perth: over half of all points",
+          "Perth: over half of all sightings",
           "lie within 100 km of the city"
         ],
         "align": "right",
@@ -296,7 +348,7 @@
         "type": "text",
         "text": [
           "North of 23\u00b0S, only about",
-          "6% of all points"
+          "6% of all sightings"
         ],
         "align": "right",
         "baseline": "middle",
