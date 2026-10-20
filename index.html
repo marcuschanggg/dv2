@@ -158,6 +158,13 @@
       justify-content: center;
       overflow-x: auto;
       font-family: var(--font-text);
+      /* Frame: every chart sits in the same-width bordered box that fits each chart's height */
+      box-sizing: border-box;
+      align-items: center;
+      padding: 16px 0;
+      outline: 1px solid var(--rule);   /* outline, not border, so the 830 px charts keep their full width */
+      outline-offset: 0;
+      border-radius: 6px;
     }
     /* Charts sized to their container (the donut) need the embed wrapper to fill it */
     #chartDonut .vega-embed { width: 100%; }
